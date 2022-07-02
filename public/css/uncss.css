@@ -238,7 +238,7 @@ a:hover,a:focus{color:#80c9f1;text-decoration:none;outline:0}
 #contact .box a:hover{color:#52b6ec}
 #contact .box input[type="text"],#contact .box textarea{background-color:#ecf0f1;border:0;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;transition:300ms}
 #contact .box input[type="text"]:focus,#contact .box textarea:focus{background-color:#FFF;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none}
-.box{padding:50px 30px;background:#c8c2c2;position:relative; padding-left:4px;}
+.box{padding:50px 4px;background:#c8c2c2;position:relative; padding-left:4px;}
 .box.first{margin-top:-40px;border-radius:2px 2px 0 0}
 .box.last{border-radius:0 0 2px 2px}
 .box h2{padding:10px 30px;display:inline-block;border-radius:4px;position:relative;margin-bottom:30px;font-size:48px}

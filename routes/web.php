@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentairesController;
 use App\Http\Controllers\ImagesController;
@@ -11,6 +12,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrieresController;
 use App\Http\Controllers\SanteController;
 use App\Http\Controllers\NawawiController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,3 +84,9 @@ Route::get('/chahada', function () {
 });
 Route::post('/sentComment', [CommentairesController::class, 'sendEmail'])->name('contact.send');
 Route::get('/fondation', [ImagesController::class, 'index']);
+Route::get('/login', [UserController::class, 'index']);
+Route::get('/register', [UserController::class, 'register']);
+Route::post('/connection', [UserController::class, 'authenticate']);
+Route::post('/inscrire', [UserController::class, 'inscrire']);
+Route::get('/dashboard', [AdminController::class, 'index']);
+Route::get('/logout', [AdminController::class, 'logout']);

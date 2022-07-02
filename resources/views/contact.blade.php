@@ -52,7 +52,7 @@ CONTACT
               <div class="col-md-6">
                 <address>
                   <strong>Siège social</strong><br>
-                  123 Street Name, Suite 50<br>
+                  {{-- <br> --}}
                   Paris, France 200038<br>
                   <abbr title="Phone">P:</abbr> (336) 6057-03920
                 </address>

@@ -18,8 +18,6 @@
 <script src="{{ asset("js/jquery.prettyPhoto.js")}}"></script>
 <script src="{{ asset("js/main.js")}}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-{{-- <script src="{{ asset("js/jquery.unveil.js")}}"></script>
-<script>$(document).ready(function(){$("img").unveil()});</script> --}}
 <style>
   body {
     margin: 0;
@@ -88,13 +86,14 @@
       <div class="topnav" id="myTopnav">
         <a class="{{ (request()->is('/')) ? 'active' : '' }}" href="{{URL::to('/')}}"><i class="icon-home"></i></a>
         <a class="{{ (request()->is('fondation*')) ? 'active' : '' }}" href="{{URL::to('/fondation')}}">ECOLE SAQINA</a>
-        <a class="{{ (request()->is('coran_hadith*')) ? 'active' : '' }}" href="{{URL::to('/coran_hadith')}}">CORAN & HADITH</a>
+        <a class="{{ (request()->is('coran_hadith*')) ? 'active' : '' }}" href="{{URL::to('/coran_hadith')}}">HADITH</a>
         <a class="{{ (request()->is('chahada*')) ? 'active' : '' }}" href="{{URL::to('/chahada')}}">CHAHADA</a>
         <a class="{{ (request()->is('salat*')) ? 'active' : '' }}" href="{{URL::to('/salat')}}">SALAT</a>
         <a class="{{ (request()->is('invocation_evocation*')) ? 'active' : '' }}" href="{{URL::to('/invocation_evocation')}}">INVOCATIONS & EVOCATIONS</a>
         <a class="{{ (request()->is('fatwas*')) ? 'active' : '' }}" href="{{URL::to('/fatwas')}}">FATWAS</a>
         <a class="{{ (request()->is('pass_sante*')) ? 'active' : '' }}" href="{{URL::to('/pass_sante')}}">PASSEPORT SANTE</a>
         <a class="{{ (request()->is('contact*')) ? 'active' : '' }}" href="{{URL::to('/contact')}}">CONTACT</a>
+        <a class="{{ (request()->is('login*')) ? 'active' : '' }}" href="{{URL::to('/login')}}">LOGIN</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
         </a>
