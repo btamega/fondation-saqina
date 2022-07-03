@@ -216,14 +216,14 @@ Fondation SAQINA
           <div class="itemslist">
             <ul class="oneitems">
               <li>
-                <img style="height: 170px; width:290px;" src={{asset($item->Image)}}>
+                <img style="height: 170px; width:-webkit-fill-available;" src={{asset($item->Image)}}>
                 @if(strlen($item->Titre)<=25)
                 <h2><a style="text-decoration: none;" href="/articles/{{$item->id_article}}">{{$item->Titre}}</a></h2>
                 @else
                 <h2><a style="text-decoration: none;" href="/articles/{{$item->id_article}}">{{substr($item->Titre, 0, 28)."..."}}.</a></h2>
                 @endif
                 <div class="iteminfo">
-                  <a><span id="span"><i class="fa fa-calendar"></i> {{$item->Date_Publication}}</span></a>
+                  <a><span id="span"><i class="fa fa-calendar"></i> {{date('d-m-Y', strtotime($item->created_at))}}</span></a>
                 </div>
                 @if(strlen($item->Description)>=50)
                 <div class="clear"></div>
@@ -263,6 +263,9 @@ Fondation SAQINA
               @else
               <h3 class="media-heading">{{$item->Titre}}</h3> <br>
             @endif
+            <div class="iteminfo">
+              <a><span id="span"><i class="fa fa-calendar"></i> {{date('d-m-Y', strtotime($item->created_at))}}</span></a>
+            </div>
             @if(strlen($item->Description)>=50)
               {{substr($item->Description, 0, 82)."..."}}.
               <a id="a" href="/articles/{{$item->id_article}}">plus</a> <p></p>

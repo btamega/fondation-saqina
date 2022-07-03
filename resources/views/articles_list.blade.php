@@ -51,12 +51,14 @@ img{
           <div class="row">
             <div class="col-md-4">
               <div style="text-align: justify">
-                <img src={{asset($item->Image)}}>
+                <img style="width: -webkit-fill-available" src={{asset($item->Image)}}>
               </div>
             </div>
             <div class="col-md-8">
               <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; color:#65b5a1">{{$item->Titre}}</h1> <br>
-              <h6>{{$item->Date_Publication}}</h6>
+              <div class="iteminfo">
+                <a><span id="span"><i class="fa fa-calendar"></i> {{date('d-m-Y', strtotime($item->created_at))}}</span></a>
+              </div>
               <p style="padding-left:20px; text-align:justify">
                 <?php
                 echo str_replace("\n","</br>", $item->Description);
@@ -77,12 +79,14 @@ img{
           <div class="row">
             <div class="col-md-4">
               <div style="text-align: justify">
-                <img src={{asset($item->Image)}}>
+                <img style="width: -webkit-fill-available" src={{asset($item->Image)}}>
               </div>
             </div>
             <div class="col-md-8">
               <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; color:#65b5a1">{{$item->Titre}}</h1> <br>
-              <h6>{{$item->Date_Publication}}</h6>
+              <div class="iteminfo">
+                <a><span id="span"><i class="fa fa-calendar"></i> {{date('d-m-Y', strtotime($item->created_at))}}</span></a>
+              </div>
               <p style="padding-left:20px; text-align:justify">
                 <?php
                 echo str_replace("\n","</br>", $item->Description);

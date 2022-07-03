@@ -90,3 +90,8 @@ Route::post('/connection', [UserController::class, 'authenticate']);
 Route::post('/inscrire', [UserController::class, 'inscrire']);
 Route::get('/dashboard', [AdminController::class, 'index']);
 Route::get('/logout', [AdminController::class, 'logout']);
+Route::get('/news', [AdminController::class, 'articles']);
+Route::post('/addArticle', [AdminController::class, 'store']);
+Route::get('/delete/{id}', [AdminController::class, 'delete']);
+Route::get('/update/{id}', [AdminController::class, 'update']);
+Route::get('/edit/{id}', [AdminController::class, 'edit']);
