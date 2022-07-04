@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Commentaires extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

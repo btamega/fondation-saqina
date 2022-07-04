@@ -262,62 +262,27 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
+                                <span class="badge badge-danger badge-counter">{{$nombreMessages}}</span>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
-                                    Message Center
+                                    Notifications
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset("images/dashboard/undraw_profile_1.svg")}}"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset("images/dashboard/undraw_profile_2.svg")}}"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset("images/dashboard/undraw_profile_3.svg")}}"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
+                                @foreach($messages as $item)
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle" src="{{asset("images/dashboard/undraw_profile_1.svg")}}"
+                                                alt="...">
+                                            <div class="status-indicator bg-success"></div>
+                                        </div>
+                                        <div class="font-weight-bold">
+                                            <div class="text-truncate">{{$item->Message}}</div>
+                                            <div class="small text-gray-500">{{$item->Nom}} . {{$item->created_at}}</div>
+                                        </div>
+                                    </a>
+                                @endforeach
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
@@ -328,25 +293,13 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{$user->name}}</span> --}}
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{$user->name}}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{asset("images/dashboard/undraw_profile.svg")}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{URL::to('logout')}}" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -364,16 +317,24 @@
                 <div class="container-fluid">
                     <h1 class="h3 mb-4 text-gray-800">Mise à jour des informations</h1>
                     <div class="card-body">
-                        <form class="user" action="/addArticle" method="POST" enctype="multipart/form-data">
+                        @if(Session::has('updated'))
+                            <div class="alert alert-success" role="alert">
+                                {{Session::get('updated')}}
+                            </div>
+                        @endif
+                        <form class="user" action="/update/{{$oldArticle->id_article}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" name="title" class="form-control form-control-user" id="exampleFirstName"
                                         value="{{$oldArticle->Titre}}" required>
                                 </div>
-                                <div class="col-sm-6">                                    
-                                    <input type="File" name="image" class="form-control form-control-user" id="image" value="{{$oldArticle->Titre}}">
-                                    <small>Image de couverture</small>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="exampleSelect1">Type du post à publier</label>
+                                <select style="width: -webkit-fill-available"  name="type" aria-valuetext="{{$oldArticle->Type}}">
+                                  <option>Article</option>
+                                  <option>Evènement</option>
+                                </select>
                                 </div>
                                 <div class="col-sm-12">
                                     <textarea style="width: inherit" name="description" id="" cols="30" rows="10">
@@ -384,18 +345,10 @@
                             </div>
 
                             <div class="form-group col-sm-6">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="date" name="title" class="form-control form-control-user" id="exampleFirstName"
-                                        value="{{$oldArticle->created_at}}" required>
-                                </div>
-                                <label for="exampleSelect1">Type du post à publier</label>
-                                <select style="width: -webkit-fill-available"  name="type" aria-valuetext="{{$oldArticle->Type}}">
-                                  <option>Article</option>
-                                  <option>Evènement</option>
-                                </select>
+                                
                               </div>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
+                              <a class="btn btn-secondary" href="{{URL::to('news')}}">Retour</a>
+                              <button type="submit" class="btn btn-primary">Enregistrer</button>
                         </form>
                     </div>
                 </div>

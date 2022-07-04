@@ -27,12 +27,6 @@ class CommentairesController extends Controller
 
     public function sendEmail(Request $request)
     {
-        // $details=[
-        //     'nom'=>$request->nom,
-        //     'email'=>$request->email,
-        //     'message'=>$request->message
-        // ];
-        // Mail::to('bougarytamega77@gmail.com')->send( new ContactMail($details));
         $commentaire = new Commentaires();
         $commentaire->Nom=$request->nom;
         $commentaire->Email=$request->email;

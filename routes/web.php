@@ -93,5 +93,8 @@ Route::get('/logout', [AdminController::class, 'logout']);
 Route::get('/news', [AdminController::class, 'articles']);
 Route::post('/addArticle', [AdminController::class, 'store']);
 Route::get('/delete/{id}', [AdminController::class, 'delete']);
-Route::get('/update/{id}', [AdminController::class, 'update']);
+Route::post('/update/{id}', [AdminController::class, 'update']);
 Route::get('/edit/{id}', [AdminController::class, 'edit']);
+Route::get('/archives', [AdminController::class, 'archive']);
+Route::post('/addPhoto', [AdminController::class, 'storePhoto']);
+
