@@ -11,7 +11,13 @@ class AdminController extends Controller
 {
     public function index()
     {   
-        return view('admin/index');
+        $post=DB::table('articles')->count();
+        $users=DB::table('users')->count();
+        $interactions=DB::table('commentaires')->count();
+        return view('admin/index')
+        ->with('nombreUsers',$users)
+        ->with('nombreInteractions',$interactions)
+        ->with('nombrePosts',$post);
     }
     public function logout(Request $request)
     {
@@ -107,8 +113,34 @@ class AdminController extends Controller
         $oldArticle = DB::table('articles')->where('id_article', $id)->first();
         return view('admin/edit')->with('oldArticle',$oldArticle);
     }
+    public function deleteArchive($id)
+    {
+        $del=DB::table('images')->delete($id);
+        if ($del) {
+            return redirect()->back()->with('deleted','Suppression effectuée avec succès !');
+        }
+        else{
+            
+        return redirect()->back()->with('notDeleted','La suppression n\'a pas été effectuée !');
+        }
+    }
+    public function updateArchive(Request $request, $id)
+    {
+        DB::table('images')->where('id', $id)
+        ->update([
+            'Titre' => $request->title,
+            'Description' => $request->description,
+            'Type' => $request->type
+        ]);
+        return redirect()->back()->with('updated','article Updated Successfully');
+    }
+    public function editArchive($id)
+    {
+        $oldArticle = DB::table('images')->where('id', $id)->first();
+        return view('admin/edit')->with('oldArticle',$oldArticle);
+    }
     public function archive()
-    {   $image =DB::table("images")->orderBy('id_Image','desc')->get();
+    {   $image =DB::table("images")->orderBy('id','desc')->get();
         $video =DB::table("images")->where("Type", "=", 'Video')->get();
         return view('admin/archives')->with("photos", $image)->with("videos", $video);
     }
@@ -166,5 +198,15 @@ class AdminController extends Controller
             echo "Sorry, there was an error uploading your file.";
         }
         }
+    }
+
+    public function notification($id)
+    {   
+        DB::table('commentaires')->where('id_commentaire', $id)
+        ->update([
+            'statut' => 'Lu'
+        ]);
+        $message = DB::table('commentaires')->where('id_commentaire',$id)->first();
+        return view('admin/charts')->with('message',$message);
     }
 }

@@ -82,6 +82,9 @@ Route::get('/salat', function () {
 Route::get('/chahada', function () {
     return view('chahada');
 });
+Route::get('/showAllMessages', function () {
+    return view('admin/showAll');
+});
 Route::post('/sentComment', [CommentairesController::class, 'sendEmail'])->name('contact.send');
 Route::get('/fondation', [ImagesController::class, 'index']);
 Route::get('/login', [UserController::class, 'index']);
@@ -95,6 +98,10 @@ Route::post('/addArticle', [AdminController::class, 'store']);
 Route::get('/delete/{id}', [AdminController::class, 'delete']);
 Route::post('/update/{id}', [AdminController::class, 'update']);
 Route::get('/edit/{id}', [AdminController::class, 'edit']);
+Route::get('/archives/delete/{id}', [AdminController::class, 'deleteArchive']);
+Route::post('/archives/update/{id}', [AdminController::class, 'updateArchive']);
+Route::get('/archives/edit/{id}', [AdminController::class, 'editArchive']);
 Route::get('/archives', [AdminController::class, 'archive']);
 Route::post('/addPhoto', [AdminController::class, 'storePhoto']);
+Route::get('/notification/{id}', [AdminController::class, 'notification']);
 

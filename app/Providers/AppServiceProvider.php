@@ -29,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
         //
         $messages = DB::table('commentaires')->orderByDesc('id_commentaire')->get();
         $nombreMessage = $messages->count();
+        $lastMessages = $messages->where('statut','=','Non lu');
+        $nombreMessageNonLu=$lastMessages->count();
         view()->composer('*', function ($view) 
         {
            $user= Auth::user();
@@ -36,6 +38,8 @@ class AppServiceProvider extends ServiceProvider
         }); 
         
         View::share('nombreMessages', $nombreMessage);
+        View::share('nombreMessageNonLu', $nombreMessageNonLu);
         View::share('messages', $messages);
+        View::share('lastMessages', $lastMessages);
     }
 }
