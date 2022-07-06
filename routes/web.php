@@ -104,4 +104,9 @@ Route::get('/archives/edit/{id}', [AdminController::class, 'editArchive']);
 Route::get('/archives', [AdminController::class, 'archive']);
 Route::post('/addPhoto', [AdminController::class, 'storePhoto']);
 Route::get('/notification/{id}', [AdminController::class, 'notification']);
-
+Route::get('/admin/hadith', [AdminController::class, 'hadith']);
+Route::get('/admin/chahada', [AdminController::class, 'chahada']);
+Route::get('/admin/invocation', [AdminController::class, 'invocation']);
+Route::get('/admin/salat', [AdminController::class, 'salat']);
+Route::get('/admin/fatwas', [AdminController::class, 'fatwas']);
+Route::get('/admin/sante', [AdminController::class, 'sante']);

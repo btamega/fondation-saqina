@@ -61,25 +61,25 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Les leçons :</h6>
-                        <a class="collapse-item" href="login.html">HADITH</a>
-                        <a class="collapse-item" href="{{URL::to('/admin/register')}}">CHAHADA</a>
-                        <a class="collapse-item" href="forgot-password.html">SALAT</a>
+                        <a class="collapse-item" href="{{URL::to('/admin/hadith')}}">HADITH</a>
+                        <a class="collapse-item" href="{{URL::to('/admin/chahada')}}">CHAHADA</a>
+                        <a class="collapse-item" href="{{URL::to('/admin/salat')}}">SALAT</a>
                         <div class="collapse-divider"></div>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{URL::to('/admin/invocations')}}">
                     <i class="fas fa-praying-hands"></i>
                     <span>INVOCATIONS</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{URL::to('/admin/fatwas')}}">
                     <i class="fas fa-star-and-crescent"></i>
                     <span>FATWAS</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{URL::to('/admin/sante')}}">
                     <i class="fas fa-medkit"></i>
                     <span>PASS SANTE</span></a>
             </li>
@@ -227,73 +227,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <h1 class="h3 mb-4 text-gray-800">Actualités</h1>
-
                     <div class="row">
-
-                        <div class="col-lg-6">
-
-                            <!-- Circle Buttons -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Posts publiés</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Titre</th>
-                                                        <th style="width: 100%">Description</th>
-                                                        <th>Type de post</th>
-                                                        <th>Couverture</th>
-                                                        <th>Date de publication</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Titre</th>
-                                                        <th style="width: 100%">Description</th>
-                                                        <th>Type de post</th>
-                                                        <th>Couverture</th>
-                                                        <th>Date de publication</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </tfoot>
-                                                <tbody>
-                                                    @foreach($articles as $item)
-                                                    <tr>
-                                                        <td>{{$item->Titre}}</td>
-                                                            @if(strlen($item->Description)<=25)
-                                                            <td>{{$item->Description}}</td>
-                                                            @else
-                                                            <td>
-                                                                <a style="text-decoration: none; color: #727274" href="/articles/{{$item->id_article}}">{{substr($item->Description, 0, 28)."..."}}.</a>
-                                                            </td>
-                                                            @endif                                                     
-                                                        <td>{{$item->Type}}</td>
-                                                        <td>
-                                                            <img style="width: 100%; height: 100%;" src="{{asset($item->Image)}}" alt="Not found">
-                                                        </td>
-                                                        <td>{{date('d-m-Y', strtotime($item->updated_at))}}</td>
-                                                        <td>
-                                                            <a style="width: 0.5rem; height: 1.5rem;" href="{{URL::to('edit/'.$item->id_article)}}" class="btn btn-info btn-circle">
-                                                                <i class="fas fa-info-circle"></i>
-                                                            </a>
-                                                            <a style="width: 0.5rem; height: 1.4rem;"  class="btn btn-danger btn-circle" href="{{URL::to('delete/'.$item->id_article)}}" data-toggle="modal" data-target="#deleteModal">
-                                                                <i class="fas fa-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-lg-6">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
@@ -362,11 +296,71 @@
                                 </div>
                             </div>
                         </div>
-                    
-                    
-
+                        <div class="col-lg-6">
+                            <!-- Circle Buttons -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Posts publiés</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Titre</th>
+                                                        <th style="width: 100%">Description</th>
+                                                        <th>Type de post</th>
+                                                        <th>Couverture</th>
+                                                        <th>Date de publication</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Titre</th>
+                                                        <th style="width: 100%">Description</th>
+                                                        <th>Type de post</th>
+                                                        <th>Couverture</th>
+                                                        <th>Date de publication</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @foreach($articles as $item)
+                                                    <tr>
+                                                        <td>{{$item->Titre}}</td>
+                                                            @if(strlen($item->Description)<=25)
+                                                            <td>{{$item->Description}}</td>
+                                                            @else
+                                                            <td>
+                                                                <a style="text-decoration: none; color: #727274" href="/articles/{{$item->id_article}}">{{substr($item->Description, 0, 28)."..."}}.</a>
+                                                            </td>
+                                                            @endif                                                     
+                                                        <td>{{$item->Type}}</td>
+                                                        <td>
+                                                            <img style="width: 100%; height: 100%;" src="{{asset($item->Image)}}" alt="Not found">
+                                                        </td>
+                                                        <td>{{date('d-m-Y', strtotime($item->updated_at))}}</td>
+                                                        <td>
+                                                            <a style="width: 0.5rem; height: 1.5rem;" href="{{URL::to('edit/'.$item->id_article)}}" class="btn btn-info btn-circle">
+                                                                <i class="fas fa-info-circle"></i>
+                                                            </a>
+                                                            <a style="width: 0.5rem; height: 1.4rem;"  class="btn btn-danger btn-circle" href="{{URL::to('delete/'.$item->id_article)}}">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -399,7 +393,6 @@
             </div>
         </div>
     </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset("vendor/jquery/jquery.min.js")}}"></script>
     <script src="{{asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>

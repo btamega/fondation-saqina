@@ -61,25 +61,25 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Les leçons :</h6>
-                        <a class="collapse-item" href="login.html">HADITH</a>
-                        <a class="collapse-item" href="{{URL::to('/admin/register')}}">CHAHADA</a>
-                        <a class="collapse-item" href="forgot-password.html">SALAT</a>
+                        <a class="collapse-item" href="{{URL::to('/admin/hadith')}}">HADITH</a>
+                        <a class="collapse-item" href="{{URL::to('/admin/chahada')}}">CHAHADA</a>
+                        <a class="collapse-item" href="{{URL::to('/admin/salat')}}">SALAT</a>
                         <div class="collapse-divider"></div>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{URL::to('/admin/invocations')}}">
                     <i class="fas fa-praying-hands"></i>
                     <span>INVOCATIONS</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{URL::to('/admin/fatwas')}}">
                     <i class="fas fa-star-and-crescent"></i>
                     <span>FATWAS</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{URL::to('/admin/sante')}}">
                     <i class="fas fa-medkit"></i>
                     <span>PASS SANTE</span></a>
             </li>
@@ -230,54 +230,6 @@
                         <div class="col-lg-6">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Archives SAQINA</h6>
-                                </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Photos</th>
-                                                        <th style="width: 100%">Description</th>
-                                                        <th>Date de publication</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Photos</th>
-                                                        <th style="width: 100%">Description</th>
-                                                        <th>Date de publication</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </tfoot>
-                                                <tbody>
-                                                    @foreach ($photos as $item)
-                                                    <tr>
-                                                        <td>
-                                                            <img style="width: 100%; height: 100%;" src="{{asset($item->URL_Image)}}" alt="Not found">
-                                                        </td>
-                                                        <td><div class="desc">{{$item->Description}}</div></td>
-                                                        <td>{{date('d-m-Y', strtotime($item->created_at))}}</td>
-                                                        <td>
-                                                            <a style="width: 0.5rem; height: 1.5rem;" href="{{URL::to('archives/edit/'.$item->id)}}" class="btn btn-info btn-circle">
-                                                                <i class="fas fa-info-circle"></i>
-                                                            </a>
-                                                            <a style="width: 0.5rem; height: 1.4rem;"  class="btn btn-danger btn-circle" href="{{URL::to('archives/delete/'.$item->id)}}" data-toggle="modal" data-target="#deleteModal">
-                                                                <i class="fas fa-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
                                     <div class="col-8">
                                         @if(Session::has('success'))
                                         <div class="alert alert-success" role="alert">
@@ -312,11 +264,11 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Ajouter un média</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form class="user" action="/addPhoto" method="POST" enctype="multipart/form-data">
+                                    <form class="user"  action="/addPhoto" method="POST" enctype="multipart/form-data">
                                         @csrf
                                             <div class="col-sm-12">
                                                 <label for="formFile" class="form-label">Média</label>
-                                                <input class="form-control" type="file" id="formFile" required name="image">
+                                                <input class="form-control" type="file" id="formFile" required name="image" >
                                             </div> <br>
                                             <div class="col-sm-12">
                                                 <label for="formFile" class="form-label">Description</label>
@@ -334,20 +286,86 @@
                                 </div>
                             </div>
                         </div>
-                    
-                    
-
-                </div>
-            </div>
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span class="sp-copyright">© 2021. All Rights Reserved. Fondation SAQINA</span>
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Archives SAQINA</h6>
+                                </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Fichier</th>
+                                                        <th>Type</th>
+                                                        <th style="width: 100%">Description</th>
+                                                        <th>Date de publication</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Fichier</th>
+                                                        <th>Type</th>
+                                                        <th style="width: 100%">Description</th>
+                                                        <th>Date de publication</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @foreach ($photos as $item)
+                                                    <tr>
+                                                        <td>
+                                                            <img style="width: 100%; height: 100%;" src="{{asset($item->URL_Image)}}" alt="Not found">
+                                                        </td>
+                                                        <td>{{$item->Type}}</td>
+                                                        <td><div class="desc">{{$item->Description}}</div></td>
+                                                        <td>{{date('d-m-Y', strtotime($item->created_at))}}</td>
+                                                        <td>
+                                                            <a style="width: 0.5rem; height: 1.5rem;" href="{{URL::to('archives/edit/'.$item->id)}}" class="btn btn-info btn-circle">
+                                                                <i class="fas fa-info-circle"></i>
+                                                            </a>
+                                                            <a style="width: 0.5rem; height: 1.4rem;"  class="btn btn-danger btn-circle" href="{{URL::to('archives/delete/'.$item->id)}}">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                    @foreach ($videos as $item)
+                                                    <tr>
+                                                        <td>
+                                                            <video style="width: 100%; height: 100%;" src="{{asset($item->URL_Image)}}"></video>
+                                                        </td>
+                                                        <td>{{$item->Type}}</td>
+                                                        <td><div class="desc">{{$item->Description}}</div></td>
+                                                        <td>{{date('d-m-Y', strtotime($item->created_at))}}</td>
+                                                        <td>
+                                                            <a style="width: 0.5rem; height: 1.5rem;" href="{{URL::to('archives/edit/'.$item->id)}}" class="btn btn-info btn-circle">
+                                                                <i class="fas fa-info-circle"></i>
+                                                            </a>
+                                                            <a style="width: 0.5rem; height: 1.4rem;"  class="btn btn-danger btn-circle" href="{{URL::to('archives/delete/'.$item->id)}}">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </footer>
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span class="sp-copyright">© 2021. All Rights Reserved. Fondation SAQINA</span>
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
-    </div>
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
@@ -371,24 +389,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Suppression</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Etes-vous sûr de vouloir procéder à la suppression ?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                <a class="btn btn-primary" href="{{URL::to('archives/delete/'.$item->id)}}">Confirmer</a>
-            </div>
-        </div>
-    </div>
-</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset("vendor/jquery/jquery.min.js")}}"></script>
@@ -400,12 +400,6 @@
     <!-- Custom scripts for all pages-->
     <script src="{{asset("js/admin/sb-admin-2.min.js")}}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{asset("vendor/chart.js/Chart.min.js")}}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{asset("js/admin/demo/chart-area-demo.js")}}"></script>
-    <script src="{{asset("js/admin/demo/chart-pie-demo.js")}}"></script>
 
 </body>
 

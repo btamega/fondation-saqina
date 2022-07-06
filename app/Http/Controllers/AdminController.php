@@ -34,7 +34,60 @@ class AdminController extends Controller
         $articles =DB::table("articles")->orderBy('created_at', 'desc')->get();
         return view('admin/articles')->with("articles", $articles);
     }
+    public function uploadFiles(Request $request)
+    {
+        $target_dir = "../public/images/";
+        $target_file = $target_dir . basename($_FILES["newFile"]["name"]);
+        $path="images/".basename($_FILES["newFile"]["name"]);
+        $uploadOk = 1;
+        $getfilename =  str_replace(' ', '_', $path);
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $type='Image';
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["newFile"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+        }
 
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            echo 'Ce fichier existe déjà dans la base de données !';
+        $uploadOk = 0;
+        }
+
+        //Check file size
+        if ($_FILES["newFile"]["size"] > 50000*1024) {
+            echo 'La taille de votre image est trop volumineuse !';
+        $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" && $imageFileType == "mp4") {
+            $type='Video';
+            echo 'Désolé, les types de fichiers supportés sont JPG, JPEG, PNG & GIF !';
+        $uploadOk = 1;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo 'Votre image n\'a pas été chargée  !';
+        // if everything is ok, try to upload file
+        } else {
+        if (move_uploaded_file($_FILES["newFile"]["tmp_name"], $getfilename)) {
+            
+            return $getfilename;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+        }
+    }
     public function store(Request $request)
     {
         $article = new Article();
@@ -61,12 +114,12 @@ class AdminController extends Controller
 
         // Check if file already exists
         if (file_exists($target_file)) {
-        return redirect()->back()->with('fileExist', 'Cette image existe déjà dans la base de données !');
+        return redirect()->back()->with('fileExist', 'Ce fichier existe déjà dans la base de données !');
         $uploadOk = 0;
         }
 
         //Check file size
-        if ($_FILES["image"]["size"] > 500000) {
+        if ($_FILES["image"]["size"] > 50000*1024) {
             return redirect()->back()->with('fileSizeToLong', 'La taille de votre image est trop volumineuse !');
         $uploadOk = 0;
         }
@@ -125,14 +178,22 @@ class AdminController extends Controller
         }
     }
     public function updateArchive(Request $request, $id)
-    {
-        DB::table('images')->where('id', $id)
-        ->update([
-            'Titre' => $request->title,
-            'Description' => $request->description,
-            'Type' => $request->type
-        ]);
-        return redirect()->back()->with('updated','article Updated Successfully');
+    {   
+        $path=new AdminController();
+        if ($request->newFile==null) {
+            DB::table('images')->where('id', $id)
+            ->update([
+                'Description' => $request->description,
+            ]);
+        }else {
+            DB::table('images')->where('id', $id)
+            ->update([
+                'Description' => $request->description,
+                'URL_Image' => $path->uploadFiles($request),
+            ]);
+        }
+        
+        return redirect()->back()->with('updated','Les modifications ont bien été enregistrées !');
     }
     public function editArchive($id)
     {
@@ -140,7 +201,7 @@ class AdminController extends Controller
         return view('admin/edit')->with('oldArticle',$oldArticle);
     }
     public function archive()
-    {   $image =DB::table("images")->orderBy('id','desc')->get();
+    {   $image =DB::table("images")->where("Type", "=", 'Image')->orderBy('id','desc')->get();
         $video =DB::table("images")->where("Type", "=", 'Video')->get();
         return view('admin/archives')->with("photos", $image)->with("videos", $video);
     }
@@ -169,7 +230,7 @@ class AdminController extends Controller
         
         // Check if file already exists
         if (file_exists($target_file)) {
-        return redirect()->back()->with('fileExist', 'Cette image existe déjà dans la base de données !');
+        return redirect()->back()->with('fileExist', 'Ce fichier existe déjà dans la base de données !');
         $uploadOk = 0;
         }
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
@@ -179,7 +240,7 @@ class AdminController extends Controller
         $uploadOk = 1;
         }
         //Check file size
-        if ($_FILES["image"]["size"] > 5000000) {
+        if ($_FILES["image"]["size"] > 50000*1024) {
             return redirect()->back()->with('fileSizeToLong', 'La taille de votre fichier est trop volumineuse !');
         $uploadOk = 0;
         }
@@ -208,5 +269,29 @@ class AdminController extends Controller
         ]);
         $message = DB::table('commentaires')->where('id_commentaire',$id)->first();
         return view('admin/charts')->with('message',$message);
+    }
+    public function hadith()
+    {
+        return view('admin/pages/hadith');
+    }
+    public function salat()
+    {
+        return view('admin/pages/salat');
+    }
+    public function invocation()
+    {
+        return view('admin/pages/invocation');
+    }
+    public function fatwas()
+    {
+        return view('admin/pages/fatwas');
+    }
+    public function sante()
+    {
+        return view('admin/pages/sante');
+    }
+    public function chahada()
+    {
+        return view('admin/pages/chahada');
     }
 }

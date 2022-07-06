@@ -61,25 +61,25 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Les leçons :</h6>
-                        <a class="collapse-item" href="login.html">HADITH</a>
-                        <a class="collapse-item" href="{{URL::to('/admin/register')}}">CHAHADA</a>
-                        <a class="collapse-item" href="forgot-password.html">SALAT</a>
+                        <a class="collapse-item" href="{{URL::to('/admin/hadith')}}">HADITH</a>
+                        <a class="collapse-item" href="{{URL::to('/admin/chahada')}}">CHAHADA</a>
+                        <a class="collapse-item" href="{{URL::to('/admin/salat')}}">SALAT</a>
                         <div class="collapse-divider"></div>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{URL::to('/admin/invocations')}}">
                     <i class="fas fa-praying-hands"></i>
                     <span>INVOCATIONS</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{URL::to('/admin/fatwas')}}">
                     <i class="fas fa-star-and-crescent"></i>
                     <span>FATWAS</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{URL::to('/admin/sante')}}">
                     <i class="fas fa-medkit"></i>
                     <span>PASS SANTE</span></a>
             </li>
@@ -256,7 +256,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Détails de l'expéditeur</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p>Email : {{$message->Email}}</p>
+                                    <p>Email : <a style="text-decoration: none" href="mailto:{{$message->Email}}">{{$message->Email}}</a></p>
                                     <p>Nom : {{$message->Nom}}</p>
                                 </div>
                             </div>
