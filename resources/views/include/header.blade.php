@@ -91,14 +91,45 @@
         <a class="{{ (request()->is('salat*')) ? 'active' : '' }}" href="{{URL::to('/salat')}}">SALAT</a>
         <a class="{{ (request()->is('invocation_evocation*')) ? 'active' : '' }}" href="{{URL::to('/invocation_evocation')}}">INVOCATIONS & EVOCATIONS</a>
         <a class="{{ (request()->is('fatwas*')) ? 'active' : '' }}" href="{{URL::to('/fatwas')}}">FATWAS</a>
-        <a class="{{ (request()->is('pass_sante*')) ? 'active' : '' }}" href="{{URL::to('/pass_sante')}}">PASSEPORT SANTE</a>
         <a class="{{ (request()->is('contact*')) ? 'active' : '' }}" href="{{URL::to('/contact')}}">CONTACT</a>
         <a class="{{ (request()->is('login*')) ? 'active' : '' }}" href="{{URL::to('/login')}}">LOGIN</a>
+        <a class="{{ (request()->is('pass_sante*')) ? 'active' : '' }}" href="#" data-toggle="modal" data-target="#search">RECHERCHER</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
         </a>
       </div>
-
+      <div style="background: #f2f2f261" class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Recherche</h5>
+                    <button style="margin-top:-20px" class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <fieldset>
+                      <div class="form-group">
+                        <label for="exampleSelect1">Catégorie</label>
+                        <select name="categorieToSearch" class="form-select" id="exampleSelect1">
+                          <option>Hadith</option>
+                          <option>Fatwas</option>
+                          <option>Invocation</option>
+                          <option>Autre</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea">Votre recherche</label>
+                        <textarea name="textToSearch" class="form-control" id="exampleTextarea" rows="3"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Rechercher</button>
+                    </fieldset>
+                  </form>
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
   </header>
   <script>
@@ -110,8 +141,7 @@
         x.className = "topnav";
       }
     }
-    </script>
-  
+  </script>
 </body>
 
 

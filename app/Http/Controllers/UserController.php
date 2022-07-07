@@ -21,7 +21,7 @@ class UserController extends Controller
             // Authentication passed...
             return redirect()->intended('dashboard');
         }
-        elseif($request->email!='karecherif2000@gmail.com'){
+        elseif($request->email!='karecherif2000@gmail.com' && $request->email!='bougarytamega77@gmail.com'){
             return redirect('')->with('success', 'Connexion faite avec succès !');
         }
         else{
@@ -47,5 +47,9 @@ class UserController extends Controller
         $user->save();
         return redirect('login')->with('status', 'Votre compte a été crée avec succès!');
     }
+    }
+    public function search(Request $request)
+    {
+       
     }
 }

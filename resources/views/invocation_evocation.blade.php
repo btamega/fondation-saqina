@@ -90,11 +90,11 @@ INVOCATIONS & EVOCATIONS
           <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:initial">Quelles sont les invocations en Islam ?</h1>
           <p>D’après Anas Ibn Malikرضي الله عنه LE Prophèteصلى الله عليه وسلم a dit :Celui qui demande trois fois le Paradis à Allah, le Paradis dit : Ô Allah ! Fais le rentrer dans le Paradis. Et celui qui demande protection contre le Feu trois fois, le Feu dit : Ô Allah protège le du Feu »</p>
           <p>[Rapporté par Tirmidhi dans ses Sounan n°2572 et authentifié par Cheikh Albani dans sa correction de Sounan Tirmidhi]</p>
-        <div style="text-align: justify; margin-right:-25px">
+        <div style="text-align: justify; margin-right:0">
             <ul>
                 @foreach($volumes as $item)
                 <li>
-                    <div>
+                    <div style="text-align: initial">
                         <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> {{$item->Titre}} :</a></strong>
                     </div>
                     <div>

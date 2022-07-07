@@ -36,22 +36,30 @@ img.avatar {
 <section style="background: #243b2a" id="portfolio">
 <div class="container">
     <div  class="box">
-        @if(Session::has('error'))
-              <div class="alert alert-danger" role="alert">
-                  {{Session::get('error')}}
-              </div>
-            @elseif(Session::has('status'))
-            <div class="alert alert-success" role="alert">
-                {{Session::get('status')}}
-            </div>
-            @endif
             <form method="POST" action="/connection">
                 @csrf
                 <div class="imgcontainer"> <br>
                     <img src="{{asset('images/Intro.jpeg')}}" alt="Avatar" class="avatar">
                 </div>
                 <div class="row">
-                        <div class="col-sm"></div>
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        @if(Session::has('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{Session::get('error')}}
+                        </div>
+                        @elseif(Session::has('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{Session::get('status')}}
+                        </div>
+                        @endif
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+                <div class="row">
+                        <div class="col-sm">
+                            
+                        </div>
                         <div class="col-sm">
                             <div class="form-outline mb-4">
                             <input type="email" id="form2Example1" name="email" class="form-control" required/>
@@ -77,7 +85,7 @@ img.avatar {
                         <button type="submit" class="btn btn-primary btn-block mb-4">Connexion</button>
                     </div>
                     <div class="col-md-auto">
-                        <a href="#!">Forgot password?</a>
+                        <a href="{{URL::to('register')}}">Forgot password?</a>
                     </div>
                     <div class="col col-lg-2">
                         <div class="form-check">

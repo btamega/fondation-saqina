@@ -279,8 +279,17 @@ class AdminController extends Controller
         return view('admin/pages/salat');
     }
     public function invocation()
-    {
-        return view('admin/pages/invocation');
+    {   
+        $categorie_invocations=DB::table('category__invocations')
+        ->join('volumes','category__invocations.id_volume','=','volumes.id_volume')
+        ->select('category__invocations.*','volumes.Titre as titre_volume')
+        ->get();
+        $volumes=DB::table('volumes')->get();
+        $categoies=DB::table('category__invocations')->get();
+        return view('admin/pages/invocation')
+        ->with('categorie_invocations',$categorie_invocations)
+        ->with('categoies',$categoies)
+        ->with('volumes',$volumes);
     }
     public function fatwas()
     {
@@ -293,5 +302,26 @@ class AdminController extends Controller
     public function chahada()
     {
         return view('admin/pages/chahada');
+    }
+    public function register()
+    {
+        return view('admin/register');
+    }
+    public function addVolume(Request $request)
+    {
+        DB::table('volumes')->insert([
+            'Titre' => $request->volume
+        ]);
+        return redirect('admin/invocations')->with('addedVolume','Nouveau volume ajouté !');
+    }
+    public function addCategorie(Request $request)
+    {
+        $volume_id=DB::table('volumes')->where('Titre','=',$request->volume)->get('id_volume');
+        dd($volume_id);
+        DB::table('category__invocations')->insert([
+            'Titre' => $request->categorie,
+            'id_volume' => $volume_id
+        ]);
+        return redirect('admin/invocations')->with('addedVolume','Nouvelle catégorie ajoutée !');
     }
 }

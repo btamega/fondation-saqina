@@ -111,7 +111,7 @@ FATWAS
             
             La fatwa est « le fait d’informer du statut juridique d’une manière non coercitive » <br> Il existe deux sortes de fatwa :<a id="a"  href="/fatwas-apropos">Voir plus</a> <p></p>
           </p>
-        <div style="text-align: justify; margin-right:-25px">
+        <div style="text-align: justify; margin-right:0">
             <ul>
                 <li>
                     <div>
@@ -142,20 +142,6 @@ FATWAS
                         <a style="text-decoration: none;" href="{{URL::to('/fatwas/40-hadiths-nawawi')}}">40 Hadiths An-Nawawi</a>
                     </div>
                 </li>
-                {{-- <li>
-                    <div>
-                        <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Femme et Famille en Islam</a></strong>
-                    </div>
-                    <div>
-                        <strong>&nbsp;</strong>
-                    </div>
-                    <div>
-                        <a style="text-decoration: none;" href="/fatwas/#">Femmes</a>
-                    </div>
-                    <div>
-                        <a style="text-decoration: none;" href="/fatwas/#">Droits des enfants</a>
-                    </div>
-                </li> --}}
                 <li style="text-align: left">
                     <div>
                         <strong><a style="text-decoration: none; " class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Biographie, Histoire et personnalités</a></strong>
@@ -190,7 +176,7 @@ FATWAS
                     </div>
                 </li>
                 <li>
-                    <div>
+                    <div style="text-align: initial">
                         <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Fikh des 'Ibadates (Actes de culte)</a></strong>
                     </div>
                     <div>

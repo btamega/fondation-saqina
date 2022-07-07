@@ -16,7 +16,7 @@ SALAT
             Le musulman doit prier 5 fois par jours, précédée d'une purification rituelle.</p> <br>
             <p>D'après Jabir (qu'Allah l'agrée), le Prophète (que la prière d'Allah et Son salut soient sur lui) a dit: « Certes entre un homme et l'association et la mécréance il y a l'abandon de la prière ». <br>
               (Rapporté par Mouslim dans son Sahih n°82)</p> <br>
-            <div style="text-align: justify; margin-right:-25px">
+            <div style="text-align: justify; margin-right:0">
                 <ul>
                     <li>
                         <div>
