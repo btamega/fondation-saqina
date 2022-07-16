@@ -115,3 +115,4 @@ Route::get('/coran_hadith', [HadithController::class, 'show']);
 Route::get('/chahada', [ChahadaController::class, 'show']);
 Route::post('/addChahada', [ChahadaController::class, 'store']);
 Route::post('/addPriere', [PrieresController::class, 'store']);
+Route::get('/admin', [AdminController::class, 'admin']);

@@ -20,6 +20,10 @@ class AdminController extends Controller
         ->with('nombreInteractions',$interactions)
         ->with('nombrePosts',$post);
     }
+    public function admin()
+    {
+        return view('admin/admins');
+    }
     public function logout(Request $request)
     {
         Auth::logout();
