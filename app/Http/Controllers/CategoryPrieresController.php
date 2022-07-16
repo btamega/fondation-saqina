@@ -37,7 +37,11 @@ class CategoryPrieresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category_Prieres::create([
+            'Titre' => $request->categorie
+        ]
+        );
+        return redirect()->back()->with('categorieAdded','Catégorie d\'invocation ajoutée avec succès !');
     }
 
     /**
@@ -48,7 +52,10 @@ class CategoryPrieresController extends Controller
      */
     public function show(Category_Prieres $category_Prieres)
     {
-        //
+       $category_Prieres=DB::table('category__prieres')->get();
+       $nombre = intdiv($category_Prieres->count(),3);
+    //    dd($nombre);
+       return view('salat')->with('category_Prieres',$category_Prieres)->with('nombre',$nombre);
     }
 
     /**
@@ -80,8 +87,9 @@ class CategoryPrieresController extends Controller
      * @param  \App\Models\Category_Prieres  $category_Prieres
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category_Prieres $category_Prieres)
+    public function destroy($id)
     {
-        //
+        Category_Prieres::where('id_category_priere',$id)->delete();
+        return redirect()->back()->with('categorieDeleted','Catégorie d\'invocation supprimée !');
     }
 }

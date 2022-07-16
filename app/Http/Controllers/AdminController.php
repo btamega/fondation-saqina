@@ -277,7 +277,8 @@ class AdminController extends Controller
     }
     public function salat()
     {
-        return view('admin/pages/salat');
+        $category_Prieres = DB::table('category__prieres')->get();
+        return view('admin/pages/salat')->with('category_prieres',$category_Prieres);
     }
     public function invocation()
     {   

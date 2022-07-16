@@ -27,7 +27,7 @@ class PrieresController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -38,7 +38,15 @@ class PrieresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categorie_id=DB::table('category__prieres')->where('Titre',$request->categorie)->first();
+        Prieres::create([
+            'Titre' => $request->title,
+            'Description' => $request->priere,
+            'id_category_priere' => $categorie_id->id_category_priere,
+            'Reference_Coran' => $request->referenceCoran,
+            'Reference_Hadith' => $request->referenceHadith,
+        ]);
+        return redirect()->back()->with('priereAdded','Prière ajoutée avec succès !');
     }
 
     /**

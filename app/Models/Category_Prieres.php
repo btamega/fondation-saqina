@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category_Prieres extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'Titre',
+        'created_at',
+        'updated_at'
+    ];
 }

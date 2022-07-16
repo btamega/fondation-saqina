@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentairesController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\CategoryPrieresController;
 use App\Http\Controllers\ChahadaController;
 use App\Http\Controllers\HadithController;
 use App\Http\Controllers\InvocationsController;
@@ -74,9 +75,7 @@ Route::get('/fatwas/hadj-omra', function(){
 
 Route::get('/articles/{id}', [HomeController::class, 'index']);
 Route::get('/pass_sante', [SanteController::class, 'index']);
-Route::get('/salat', function () {
-    return view('salat');
-});
+Route::get('/salat', [CategoryPrieresController::class, 'show']);
 Route::get('/showAllMessages', function () {
     return view('admin/showAll');
 });
@@ -94,6 +93,7 @@ Route::get('/delete/{id}', [AdminController::class, 'delete']);
 Route::post('/update/{id}', [AdminController::class, 'update']);
 Route::get('/edit/{id}', [AdminController::class, 'edit']);
 Route::get('/archives/delete/{id}', [AdminController::class, 'deleteArchive']);
+Route::get('/categorie/delete/{id}', [CategoryPrieresController::class, 'destroy']);
 Route::post('/archives/update/{id}', [AdminController::class, 'updateArchive']);
 Route::get('/archives/edit/{id}', [AdminController::class, 'editArchive']);
 Route::get('/archives', [AdminController::class, 'archive']);
@@ -108,8 +108,10 @@ Route::get('/admin/sante', [AdminController::class, 'sante']);
 Route::get('/register', [AdminController::class, 'register']);
 Route::post('/search', [UserController::class, 'search']);
 Route::post('/volume', [AdminController::class, 'addVolume']);
+Route::post('/addCategorie', [CategoryPrieresController::class, 'store']);
 Route::post('/categorie', [AdminController::class, 'addCategorie']);
 Route::post('/addHadith', [HadithController::class, 'store']);
 Route::get('/coran_hadith', [HadithController::class, 'show']);
 Route::get('/chahada', [ChahadaController::class, 'show']);
 Route::post('/addChahada', [ChahadaController::class, 'store']);
+Route::post('/addPriere', [PrieresController::class, 'store']);

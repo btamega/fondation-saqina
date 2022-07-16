@@ -16,6 +16,21 @@ SALAT
             Le musulman doit prier 5 fois par jours, précédée d'une purification rituelle.</p> <br>
             <p>D'après Jabir (qu'Allah l'agrée), le Prophète (que la prière d'Allah et Son salut soient sur lui) a dit: « Certes entre un homme et l'association et la mécréance il y a l'abandon de la prière ». <br>
               (Rapporté par Mouslim dans son Sahih n°82)</p> <br>
+              <div style="text-align: initial; margin-right:0">
+                <ul>
+                  {{-- @for($i = 0; $i < $nombre; $i++) --}}
+                    <li>
+                      @foreach($category_Prieres as $index => $item)
+                      {{-- @if($index<3) --}}
+                        <div>
+                          <a style="text-decoration: none;" href="{{URL::to('salat/'.$item->id_category_priere)}}"><img style="width: 18px" src="{{asset("images\pray-solid.svg")}}">&nbsp;{{$item->Titre}}</a>
+                        </div>
+                      {{-- @endif --}}
+                      @endforeach
+                    </li>
+                  {{-- @endfor --}}
+                </ul>
+              </div>
             <div style="text-align: justify; margin-right:0">
                 <ul>
                     <li>

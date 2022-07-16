@@ -8,8 +8,8 @@ Fondation SAQINA
     .titre{
         background-color: #d8d3d3;
         font-family: 'Bodoni MT', 'Didot', 'Didot LT STD';
-        margin-right: -30px;
-        margin-left: -3px;
+        margin-right: 13px;
+        margin-left: 13px;
         
     }
     #h2{
@@ -29,7 +29,7 @@ Fondation SAQINA
       <div class="box">
         <div class="center gap">
         @foreach($category_prieres as $category)
-          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:initial">{{$category->Titre}}</h1>
+          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:center">{{$category->Titre}}</h1>
         @endforeach 
       </div>
         @foreach($prieres as $item)
