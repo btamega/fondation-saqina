@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentairesController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ChahadaController;
+use App\Http\Controllers\HadithController;
 use App\Http\Controllers\InvocationsController;
 use App\Http\Controllers\VolumeController;
 use App\Http\Controllers\PersonnalitesController;
@@ -58,10 +60,6 @@ Route::get('/fatwas/sahih-bukhari', function () {
     return view('fatwas/hadith');
 });
 Route::get('/contact', [CommentairesController::class, 'index']);
-
-Route::get('/coran_hadith', function () {
-    return view('coran_hadith');
-});
 Route::get('/fatwas', function () {
     return view('fatwas');
 });
@@ -78,9 +76,6 @@ Route::get('/articles/{id}', [HomeController::class, 'index']);
 Route::get('/pass_sante', [SanteController::class, 'index']);
 Route::get('/salat', function () {
     return view('salat');
-});
-Route::get('/chahada', function () {
-    return view('chahada');
 });
 Route::get('/showAllMessages', function () {
     return view('admin/showAll');
@@ -114,3 +109,7 @@ Route::get('/register', [AdminController::class, 'register']);
 Route::post('/search', [UserController::class, 'search']);
 Route::post('/volume', [AdminController::class, 'addVolume']);
 Route::post('/categorie', [AdminController::class, 'addCategorie']);
+Route::post('/addHadith', [HadithController::class, 'store']);
+Route::get('/coran_hadith', [HadithController::class, 'show']);
+Route::get('/chahada', [ChahadaController::class, 'show']);
+Route::post('/addChahada', [ChahadaController::class, 'store']);

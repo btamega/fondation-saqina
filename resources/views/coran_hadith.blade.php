@@ -30,6 +30,10 @@ CORAN & HADITH
     <div class="container">
       <div class="box">
         <div class="center gap">
+          @foreach($hadiths as $hadith)
+          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:center; color:#65b5a1">{{$hadith->titre}}</h1> <br>
+          <div>{!!$hadith->description!!}</div>
+          @endforeach
           <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:center; color:#65b5a1">Hadiths sur les ablutions باَبُ الوُضُوءِ   </h1> <br>
           <ol>
             <li class="li">

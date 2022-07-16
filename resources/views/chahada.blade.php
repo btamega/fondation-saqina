@@ -16,6 +16,16 @@ CHAHADA
     <div class="u-clearfix u-sheet u-sheet-1 ">
       <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
         <div  class="u-layout">
+          <div class="u-container-style u-layout-cell u-size-30 u-white">
+            <div style="background-color: #e5e5e5" class="u-container-layout u-valign-top">
+              @foreach($chahadas as $chahada)
+                <h6 style="text-align: center" class="u-custom-font u-text u-text-font u-text-palette-3-base u-text-1">{{$chahada->titre}}</h6>
+                <blockquote style="border-left: 5px solid #478ac9" class="u-align-justify u-text u-text-2"> 
+                  <div>{!!$chahada->description!!}</div>
+                </blockquote>
+              @endforeach
+            </div>
+          </div>
           <div class="u-layout-row">
             <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-1">
               <div style="background-color: #e5e5e5" class="u-container-layout u-valign-top u-container-layout-1">
@@ -51,6 +61,10 @@ CHAHADA
             </div>
             <div  class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
               <div style="background-color: #e5e5e5" class="u-container-layout u-valign-bottom u-container-layout-2">
+                {{-- @foreach($chahadas as $chahada)
+                  <h6 class="u-align-justify u-custom-font u-text u-text-font u-text-palette-3-base u-text-1">{{$chahada->titre}}</h6>
+                  <div>{!!$chahada->description!!}</div>
+                @endforeach --}}
                 <h6 class="u-align-left u-custom-font u-text u-text-font u-text-palette-3-base u-text-3">L'Unicité de la Divinité</h6>
                  <p class="u-align-justify u-custom-font u-font-montserrat u-text u-text-4" data-animation-name="fadeIn" data-animation-duration="1000" data-animation-delay="0" data-animation-direction="Down"> L’Unicité de la Divinité signifie que les serviteurs doivent consacrer leurs oeuvres d'adoration exclusivement pour Allah : invocations, voeux, immolations, l’espérance, la crainte, la confiance, le repentir...
                   La révélation des Livres Saints et la mission de tous les Messagers ont eu pour finalité de rappeler aux gens cette catégorie d'unicité, laquelle a constitué le fondement et l'essence de la prédication de tous les Messagers. Dieu Tout-Puissant dit :
