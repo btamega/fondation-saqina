@@ -13,15 +13,21 @@ class UserController extends Controller
     {
        return view('login')->with('success', 'Connexion faite avec succès !');
     }
+    public function create(Request $request)
+    {
+        User::create($request->all());
+        return redirect('login')->with('');
+    }
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
- 
-        if (Auth::attempt($credentials) && ($request->email=='karecherif2000@gmail.com' ||$request->email=='bougarytamega77@gmail.com')) {
+        $user=DB::table('users')->where('email',$request->email)->first();
+        // dd($user->role);
+        if (Auth::attempt($credentials) && ($user->role=='Admin' || $request->email=='karecherif2000@gmail.com ')) {
             // Authentication passed...
             return redirect()->intended('dashboard');
         }
-        elseif($request->email!='karecherif2000@gmail.com' && $request->email!='bougarytamega77@gmail.com'){
+        elseif($user->role!='Admin'){
             return redirect('')->with('success', 'Connexion faite avec succès !');
         }
         else{
@@ -38,15 +44,17 @@ class UserController extends Controller
         if ($oldUser) {
             return redirect()->back()->with('emailExist','Erreur, il existe déjà un compte avec cette adresse émail');
         }
-        else {
-            # code...
+        elseif ($_POST["password"] === $_POST["passwordConfirm"]) {
         $user = new User();
-        $user->name=$request->name;
+        $user->name=$request->firstName.' '.$request->lastName;
         $user->email=$request->email;
         $user->password=Hash::make($request->password);
+        $user->Telephone=$request->phone;
         $user->save();
         return redirect('login')->with('status', 'Votre compte a été crée avec succès!');
-    }
+        }else {
+            return redirect()->back()->with('passwordNotMatch','Erreur, les mots de passe sont différents');
+        }
     }
     public function search(Request $request)
     {

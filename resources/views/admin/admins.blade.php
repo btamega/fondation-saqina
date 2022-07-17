@@ -232,7 +232,163 @@
                 </nav>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @if(Session::has('update'))
+                            <div class="alert alert-success" role="alert">
+                                {{Session::get('update')}}
+                            </div>
+                            @endif
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Accordion -->
+                                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                                    <h6 class="m-0 font-weight-bold text-primary">Les administrateurs du site</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="collapseCardExample">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nom</th>
+                                                        <th>Email</th>
+                                                        <th>Retirer</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($admins as $admin)
+                                                    <tr>
+                                                        <td>{{$admin->name}}</td>
+                                                        <td>{{$admin->email}}</td>
+                                                        <td>
+                                                            <a style="width: 0.5rem; height: 1.5rem;" href="{{URL::to('admin/delete/'.$admin->id)}}" class="btn btn-danger btn-circle">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <div class="col-8">
+                                        @if(Session::has('deleted'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{Session::get('deleted')}}
+                                        </div>
+                                        @elseif(Session::has('notDeleted'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{Session::get('notDeleted')}}
+                                        </div>
+                                        @elseif(Session::has('passwordNotMatch'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{Session::get('passwordNotMatch')}}
+                                        </div>
+                                        @elseif(Session::has('emailExist'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{Session::get('emailExist')}}
+                                        </div>
+                                        @elseif(Session::has('adminAdded'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{Session::get('adminAdded')}}
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <h6 class="m-0 font-weight-bold text-primary">Ajouter un nouvel administrateur</h6>
+                                </div>
+                                <div class="card-body">
+                                    <a href="#newUser" class="d-block card-header py-3" data-toggle="collapse"
+                                        role="button" aria-expanded="true" aria-controls="newUser">
+                                        <h6 class="m-0 font-weight-bold text-primary">Nouvel utilisateur</h6>
+                                    </a>
+                                    <div class="collapse show" id="newUser"> <br>
+                                        <div class="container">
+                                            <form class="user" action="/addAdmin" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="text" name="firstName" class="form-control form-control-user" id="exampleFirstName"
+                                                            placeholder="Nom" required>
+                                                    </div>
+                                                    <div class="col-sm-6">                                    
+                                                        <input type="text" name="lastName" class="form-control form-control-user" id="exampleFirstName"
+                                                        placeholder="Prénom" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="email" name="email" class="form-control form-control-user" id="exampleFirstName"
+                                                            placeholder="Email" required>
+                                                    </div>
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="tel" name="phone" class="form-control form-control-user" id="exampleFirstName"
+                                                            placeholder="Téléphone">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">                                    
+                                                        <input type="password" name="password" class="form-control form-control-user" id="exampleFirstName"
+                                                        placeholder="Mot de passe" required>
+                                                    </div>
+                                                    <div class="col-sm-6">                                    
+                                                        <input type="password" name="confirmPassword" class="form-control form-control-user" id="exampleFirstName"
+                                                        placeholder="Confirmez le mot de passe" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="submit" class="btn btn-primary btn-user btn-block">Ajouter</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <button type="reset" class="btn btn-google btn-user btn-block">Annuler</button>
+                                                    </div>
+                                                  </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <a href="#user" class="d-block card-header py-3" data-toggle="collapse"
+                                        role="button" aria-expanded="true" aria-controls="user">
+                                        <h6 class="m-0 font-weight-bold text-primary">Utilisateurs existants</h6>
+                                    </a>
+                                    <div class="collapse show" id="user">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nom</th>
+                                                        <th>Email</th>
+                                                        <th>Ajouter</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($users as $user)
+                                                    <tr>
+                                                        <td>{{$user->name}}</td>
+                                                        <td>{{$user->email}}</td>
+                                                        <td>
+                                                            <a style="width: 0.5rem; height: 1.5rem;" href="{{URL::to('user/'.$user->id)}}" class="btn btn-info btn-circle">
+                                                                <i class="fa fa-plus-circle"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <footer class="sticky-footer bg-white">

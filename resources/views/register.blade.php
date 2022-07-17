@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-INSCRIPTION
+CONNEXION
 @endsection
 @section('stylesheet')
 <!-- CSS only -->
@@ -36,55 +36,75 @@ img.avatar {
 <section style="background: #243b2a" id="portfolio">
 <div class="container">
     <div  class="box">
-        @if(Session::has('error'))
-              <div class="alert alert-danger" role="alert">
-                  {{Session::get('error')}}
-              </div>
-              @elseif(Session::has('emailExist'))
-              <div class="alert alert-danger" role="alert">
-                {{Session::get('emailExist')}}
-            </div>
-            @endif
             <form method="POST" action="/inscrire">
                 @csrf
                 <div class="imgcontainer"> <br>
                     <img src="{{asset('images/Intro.jpeg')}}" alt="Avatar" class="avatar">
                 </div>
                 <div class="row">
-                    <div class="col-sm"></div>
-                    <div class="col-sm">
-                        <div class="form-outline mb-4">
-                        <input type="text" id="form2Example1" name="name" class="form-control" required/>
-                        <label class="form-label" for="form2Example1">Nom et Prenom</label>
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        @if(Session::has('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{Session::get('error')}}
                         </div>
+                        @elseif(Session::has('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{Session::get('status')}}
+                        </div>
+                        @elseif(Session::has('passwordNotMatch'))
+                        <div class="alert alert-danger" role="alert">
+                            {{Session::get('passwordNotMatch')}}
+                        </div>
+                        @endif
                     </div>
-                    <div class="col-sm"></div>
-            </div>
-                <div class="row">
-                        <div class="col-sm"></div>
-                        <div class="col-sm">
-                            <div class="form-outline mb-4">
-                            <input type="email" id="form2Example1" name="email" class="form-control" required/>
-                            <label class="form-label" for="form2Example1">Email address</label>
-                            </div>
-                        </div>
-                        <div class="col-sm"></div>
+                    <div class="col-3"></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form2Example1" name="firstName" class="form-control" required/>
+                            <label class="form-label" for="form2Example1">Nom</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form2Example1" name="lastName" class="form-control" required/>
+                            <label class="form-label" for="form2Example1">Prénom</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-outline mb-4">
+                        <input type="email" id="form2Example1" name="email" class="form-control" required/>
+                        <label class="form-label" for="form2Example1">Email address</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-outline mb-4">
+                            <input type="tel" id="form2Example2" name="phone" class="form-control" required placeholder="+212 620 78 38 37"/>
+                            <label class="form-label" for="form2Example2">Téléphone</label>
+                        </div>
+                    </div>
                     <div class="col-sm">
                         <div class="form-outline mb-4">
                         <input type="password" id="form2Example2" name="password" class="form-control" required/>
-                        <label class="form-label" for="form2Example2">Password</label>
+                        <label class="form-label" for="form2Example2">Mot de passe</label>
                         </div>
                     </div>
-                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                        <div class="form-outline mb-4">
+                            <input type="password" id="form2Example2" name="passwordConfirm" class="form-control" required/>
+                            <label class="form-label" for="form2Example2">Confirmez votre mot de passe</label>
+                        </div>
+                    </div>
                 </div>
                     
                 
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-2">
-                        <button type="submit" class="btn btn-primary btn-block mb-4">Envoyez</button>
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Enregistrer</button>
                     </div>
                 </div>
                 <div class="row">
@@ -98,7 +118,7 @@ img.avatar {
                 </div>           
                 </div>
                 <div class="text-center">
-                <p>Already have an account ? <a href="{{URL::to('login')}}">Login</a></p>
+                <p>Avez-vous déjà un compte ? <a href="{{URL::to('login')}}">Connexion</a></p>
                 </div>
             </form> 
     </div>

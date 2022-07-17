@@ -31,7 +31,6 @@ use App\Http\Controllers\UserController;
 Route::get("/invocation_evocation/{category}/invocation_list", [InvocationsController::class, 'index']);
 Route::get("/salat/{category}", [PrieresController::class, 'index']);
 
-
 Route::get('/invocation_evocation', [VolumeController::class, 'index']);
 
 Route::get('/', [ArticlesController::class, 'index']);
@@ -95,6 +94,8 @@ Route::get('/edit/{id}', [AdminController::class, 'edit']);
 Route::get('/archives/delete/{id}', [AdminController::class, 'deleteArchive']);
 Route::get('/categorie/delete/{id}', [CategoryPrieresController::class, 'destroy']);
 Route::post('/archives/update/{id}', [AdminController::class, 'updateArchive']);
+Route::get('/user/{id}', [AdminController::class, 'updateUser']);
+Route::get('/admin/delete/{id}', [AdminController::class, 'deleteAdmin']);
 Route::get('/archives/edit/{id}', [AdminController::class, 'editArchive']);
 Route::get('/archives', [AdminController::class, 'archive']);
 Route::post('/addPhoto', [AdminController::class, 'storePhoto']);
@@ -105,7 +106,6 @@ Route::get('/admin/invocations', [AdminController::class, 'invocation']);
 Route::get('/admin/salat', [AdminController::class, 'salat']);
 Route::get('/admin/fatwas', [AdminController::class, 'fatwas']);
 Route::get('/admin/sante', [AdminController::class, 'sante']);
-Route::get('/register', [AdminController::class, 'register']);
 Route::post('/search', [UserController::class, 'search']);
 Route::post('/volume', [AdminController::class, 'addVolume']);
 Route::post('/addCategorie', [CategoryPrieresController::class, 'store']);
@@ -116,3 +116,4 @@ Route::get('/chahada', [ChahadaController::class, 'show']);
 Route::post('/addChahada', [ChahadaController::class, 'store']);
 Route::post('/addPriere', [PrieresController::class, 'store']);
 Route::get('/admin', [AdminController::class, 'admin']);
+Route::post('/addAdmin', [AdminController::class, 'addAdmin']);

@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Images;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class AdminController extends Controller
 {
     public function index()
@@ -21,8 +24,10 @@ class AdminController extends Controller
         ->with('nombrePosts',$post);
     }
     public function admin()
-    {
-        return view('admin/admins');
+    {   
+        $admins=DB::table('users')->where('role','Admin')->get();
+        $users=DB::table('users')->where('role','User')->get();
+        return view('admin/admins',compact('admins','users'));
     }
     public function logout(Request $request)
     {
@@ -156,6 +161,14 @@ class AdminController extends Controller
         DB::table('articles')->where('id_article', $id)->delete();
         return redirect()->back()->with('deleted','Suppression effectuée avec succès !');
     }
+    public function deleteAdmin($id)
+    {
+        DB::table('users')->where('id', $id)
+        ->update([
+            'role' => 'User',
+        ]);
+        return redirect()->back()->with('update', 'Mises à jour effectuées avec succès !');
+    }
     public function update(Request $request, $id)
     {
         DB::table('articles')->where('id_article', $id)
@@ -199,6 +212,14 @@ class AdminController extends Controller
         }
         
         return redirect()->back()->with('updated','Les modifications ont bien été enregistrées !');
+    }
+    public function updateUser($id)
+    {
+        DB::table('users')->where('id', $id)
+        ->update([
+            'role' => 'Admin',
+        ]);
+        return redirect()->back()->with('adminAdded', 'Votre nouvel utilisateur est maintenant administrateur !');
     }
     public function editArchive($id)
     {
@@ -329,5 +350,24 @@ class AdminController extends Controller
             'id_volume' => $volume_id
         ]);
         return redirect('admin/invocations')->with('addedVolume','Nouvelle catégorie ajoutée !');
+    }
+    public function addAdmin(Request $request)
+    {
+        $oldUser = DB::table('users')->where('email',$request->email)->first();
+        if ($oldUser) {
+            return redirect()->back()->with('emailExist','Erreur, il existe déjà un compte avec cette adresse émail');
+        }
+        elseif ($_POST["password"] === $_POST["confirmPassword"]) {
+        $user = new User();
+        $user->name=$request->firstName.' '.$request->lastName;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->Telephone=$request->phone;
+        $user->role='Admin';
+        $user->save();
+        return redirect()->back()->with('adminAdded', 'Votre nouvel utilisateur est maintenant administrateur !');
+        }else {
+            return redirect()->back()->with('passwordNotMatch','Erreur, les mots de passe sont différents');
+        }
     }
 }
