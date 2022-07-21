@@ -93,9 +93,9 @@ INVOCATIONS & EVOCATIONS
         <div style="text-align: justify; margin-right:0">
             <ul>
                 @foreach($volumes as $item)
-                <li>
+                <li style="height: 100px">
                     <div style="text-align: initial">
-                        <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> {{$item->Titre}} :</a></strong>
+                        <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> {{$item->Titre}}</a></strong>
                     </div>
                     <div>
                         <strong>&nbsp;</strong>

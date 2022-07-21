@@ -339,17 +339,29 @@ class AdminController extends Controller
         DB::table('volumes')->insert([
             'Titre' => $request->volume
         ]);
+        $request->session()->put('volume',$request->id_volume);
         return redirect('admin/invocations')->with('addedVolume','Nouveau volume ajouté !');
     }
     public function addCategorie(Request $request)
     {
-        $volume_id=DB::table('volumes')->where('Titre','=',$request->volume)->get('id_volume');
-        dd($volume_id);
+
+        $volume=DB::table('volumes')->where('Titre','=',$request->volume)->first();
         DB::table('category__invocations')->insert([
             'Titre' => $request->categorie,
-            'id_volume' => $volume_id
+            'id_volume' => $volume->id_volume
         ]);
         return redirect('admin/invocations')->with('addedVolume','Nouvelle catégorie ajoutée !');
+    }
+    public function addInvocation(Request $request)
+    {
+        $categorie=DB::table('category__invocations')->where('Titre','=',$request->categorie)->first();
+        DB::table('invocations')->insert([
+            'Category' => $request->categorie,
+            'Titre' => $request->titre,
+            'Description' => $request->description,
+            'id_category_invocation' => $categorie->id_category_invocation
+        ]);
+        return redirect()->back()->with('addedInvocation','Invocation ajoutée avec succès !');
     }
     public function addAdmin(Request $request)
     {

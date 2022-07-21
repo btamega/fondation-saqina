@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category_Prieres;
+use App\Models\Prieres;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class CategoryPrieresController extends Controller
@@ -89,6 +90,7 @@ class CategoryPrieresController extends Controller
      */
     public function destroy($id)
     {
+        Prieres::where('id_category_priere',$id)->delete();
         Category_Prieres::where('id_category_priere',$id)->delete();
         return redirect()->back()->with('categorieDeleted','Catégorie d\'invocation supprimée !');
     }

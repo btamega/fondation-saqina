@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset("css/admin/sb-admin-2.min.css")}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 </head>
 
@@ -249,13 +250,17 @@
                                     <div class="alert alert-success" role="alert">
                                         {{Session::get('addedVolume')}}
                                     </div>
+                                @elseif(Session::has('addedInvocation'))
+                                <div class="alert alert-success" role="alert">
+                                    {{Session::get('addedInvocation')}}
+                                </div>
                                 @endif
-                                <form class="user" action="/addArticle" method="POST" enctype="multipart/form-data">
+                                <form class="user" action="/addInvocation" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
                                         <div class="form-group col-sm-6">
                                             <label for="exampleSelect1">Volume <span style="color: red">*</span></label>
-                                            <select style="width: -webkit-fill-available"  name="volume" required>
+                                            <select class="form-control" style="width: -webkit-fill-available"  name="volume" required>
                                                 @foreach($volumes as $item)
                                                     <option>{{$item->Titre}}</option>
                                                 @endforeach
@@ -267,7 +272,7 @@
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="exampleSelect1">Catégorie <span style="color: red">*</span></label>
-                                            <select style="width: -webkit-fill-available"  name="volume" required>
+                                            <select class="form-control" style="width: -webkit-fill-available"  name="categorie" required>
                                                 @foreach($categoies as $item)
                                                     <option>{{$item->Titre}}</option>
                                                 @endforeach
@@ -279,13 +284,11 @@
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0"></div>
                                         <div class="col-sm-12">                                    
-                                            <input type="text" name="category" class="form-control form-control-user" id="image" placeholder="Catégorie">
-                                            {{-- <small>Image de couverture</small> --}}
+                                            <input type="text" name="titre" class="form-control form-control-user" id="image" placeholder="Titre de l'invocation ">
+                                        </div> 
+                                        <div class="col-sm-12">                                    
+                                            <textarea name="description" class="form-control form-control-user" placeholder="Invocation" id="summernote" cols="30" rows="10"></textarea>
                                         </div>
-                                        {{-- <div class="col-sm-12">
-                                            <textarea style="width: inherit" name="description" id="" cols="30" rows="10"></textarea>
-                                            <small>Description</small>
-                                        </div> --}}
                                     </div>
                                       <div class="row">
                                         <div class="col-6">
@@ -296,54 +299,15 @@
                                         </div>
                                       </div>
                                 </form>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem ab, ducimus cum mollitia suscipit minima quasi voluptas, nulla excepturi doloremque qui accusantium? Dicta natus nobis voluptate, minus nulla necessitatibus perspiciatis!</p>
-                                <div class="mb-2">
-                                    <code>Volume *</code>
-                                    
-                                </div>
-                                <div class="mb-2">
-                                    {{-- @if($invocation->Reference_Hadith==null)
-                                        
-                                    @else
-                                        <code>{{$invocation->Reference_Hadith}}</code>
-                                    @endif --}}
-                                </div>
                             </div>
                         </div>
-
-                        <!-- Brand Buttons -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Brand Buttons</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Google and Facebook buttons are available featuring each company's respective
-                                    brand color. They are used on the user login and registration pages.</p>
-                                <p>You can create more custom buttons by adding a new color variable in the
-                                    <code>_variables.scss</code> file and then using the Bootstrap button variant
-                                    mixin to create a new style, as demonstrated in the <code>_buttons.scss</code>
-                                    file.</p>
-                                <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i>
-                                    .btn-google</a>
-                                <a href="#" class="btn btn-facebook btn-block"><i
-                                        class="fab fa-facebook-f fa-fw"></i> .btn-facebook</a>
-
-                            </div>
-                        </div>
-
                     </div>
-
                     <div class="col-lg-6">
-
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Catégories d'invocation</h6>
                             </div>
                             <div class="card-body">
-                                {{-- <p>Works with any button colors, just use the <code>.btn-icon-split</code> class and
-                                    the markup in the examples below. The examples below also use the
-                                    <code>.text-white-50</code> helper class on the icons for additional styling,
-                                    but it is not required.</p> --}}
                                     @foreach($categorie_invocations as $category)
                                         <div class="my-2"></div>
                                         <a href="{{URL::to('invocation_evocation/'.$category->Titre.'/'.'invocation_list/')}}" class="btn btn-secondary btn-icon-split">
@@ -434,14 +398,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/categorie" method="POST">
+                <form action="/addNewInvocation" method="POST">
                     @csrf
                     <fieldset>
-                        <div class="form-group">
+                        <div class="form-group col-sm-12">
+                            <label for="exampleSelect1">Volume <span style="color: red">*</span></label>
+                            <select class="form-control" style="width: -webkit-fill-available"  name="volume" required>
+                                @foreach($volumes as $item)
+                                    <option>{{$item->Titre}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
                             <label for="exampleInputEmail1">Titre</label>
                             <input type="text" class="form-control" name="categorie" aria-describedby="emailHelp" placeholder="Catégorie" required>
                             <small id="emailHelp" class="form-text text-muted">Les invocations apparaissent sous une catégorie</small>
-                          </div>
+                        </div>
                       <button type="submit" class="btn btn-primary">Ajouter</button>
                     </fieldset>
                   </form>
@@ -458,6 +430,26 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{asset("js/admin/sb-admin-2.min.js")}}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script>
+        $('#summernote').summernote({
+          placeholder: 'Votre invocation ici ...',
+          tabsize: 2,
+          height: 300,
+          toolbar: [
+            ['style', ['style']],
+            ['fontsize', ['fontsize']],
+            ['fontname', ['fontname']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link']],
+            ['view', ['fullscreen']]
+          ]
+        });
+      </script>
 </body>
 
 </html>

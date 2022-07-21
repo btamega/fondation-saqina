@@ -8,8 +8,8 @@ Fondation SAQINA
     .titre{
         background-color: #d8d3d3;
         font-family: 'Bodoni MT', 'Didot', 'Didot LT STD';
-        margin-right: -30px;
-        margin-left: -3px;
+        margin-right: 5px;
+        margin-left: 5px;
         
     }
     #h2{
@@ -41,7 +41,8 @@ Fondation SAQINA
         <div style="text-align: center" class="titre">
             <h2 id="h2" style="font-size: 1.7em">{{$item->Titre}}</h2>
         </div>
-        <p style="font-size: 20px; font-style:normal; text-align:justify;">{{$item->Description}}</p> <br>
+        <div>{!!$item->Description!!}</div>
+        {{-- <p style="font-size: 20px; font-style:normal; text-align:justify; margin-right: 5px; margin-left: 5px;">{{$item->Description}}</p> <br> --}}
         @if($item->Transcription_Phonetique==null)
         
           @else
@@ -52,6 +53,7 @@ Fondation SAQINA
         <p dir="rtl" style="color: #171792; font-size:26pt">{{$item->Reference_Coran}}</p> <br>
         <p style="color: #00B050">{{$item->Reference_Hadith}}</p>
         @endif
+        {{-- <div>{!!$item->Description!!}</div> --}}
         @endforeach
       </div>
     </div>

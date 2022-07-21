@@ -18,56 +18,18 @@ SALAT
               (Rapporté par Mouslim dans son Sahih n°82)</p> <br>
               <div style="text-align: initial; margin-right:0">
                 <ul>
-                  {{-- @for($i = 0; $i < $nombre; $i++) --}}
-                    <li>
-                      @foreach($category_Prieres as $index => $item)
-                      {{-- @if($index<3) --}}
-                        <div>
-                          <a style="text-decoration: none;" href="{{URL::to('salat/'.$item->id_category_priere)}}"><img style="width: 18px" src="{{asset("images\pray-solid.svg")}}">&nbsp;{{$item->Titre}}</a>
+                  @foreach($category_Prieres as $item)
+                    <li style="height: 90px">
+                        <div style="text-align: initial">
+                            <strong><a style="text-decoration: none;" class="invocation" href="{{URL::to('salat/'.$item->id_category_priere)}}"> <i class="fa fa-folder-open-o"></i> {{$item->Titre}}</a></strong>
                         </div>
-                      {{-- @endif --}}
-                      @endforeach
+                        <div>
+                            <strong>&nbsp;</strong>
+                        </div>
                     </li>
-                  {{-- @endfor --}}
+                  @endforeach
                 </ul>
               </div>
-            <div style="text-align: justify; margin-right:0">
-                <ul>
-                    <li>
-                        <div>
-                          <a style="text-decoration: none;" href="{{URL::to('/salat/1')}}"><img style="width: 18px" src="{{asset("images\pray-solid.svg")}}">&nbsp;Les conditions de validité de la prière</a>
-                        </div>
-                        <div>
-                          <a style="text-decoration: none;" href="{{URL::to("/salats/Horaires")}}"><img style="width: 18px" src="{{asset("images\quran-solid.svg")}}">&nbsp;Le nombre des prières et les horaires</a>
-                        </div>
-                        <div>
-                          <a style="text-decoration: none;" href="{{URL::to("/salat/3")}}"><img style="width: 18px" src="{{asset("images\quran-solid.svg")}}">&nbsp;Les ablutions</a>
-                        </div>
-                    </li>
-                    <li>
-                      <div>
-                        <a style="text-decoration: none;" href="{{URL::to("/salats/Adhan")}}"><img style="width: 18px" src="{{asset("images\kaaba-solid.svg")}}">&nbsp;L'appel à la prière</a>
-                      </div>
-                      <div>
-                        <a style="text-decoration: none;" href="{{URL::to("/salats/La-prière")}}"><img style="width: 18px" src="{{asset("images\praying-hands-solid.svg")}}">&nbsp;La prière</a>
-                      </div>
-                      <div>
-                        <a style="text-decoration: none;" href="{{URL::to("/salat/6")}}"><img style="width: 18px" src="{{asset("images\star-and-crescent-solid.svg")}}">&nbsp;La prière des fêtes</a>
-                      </div>
-                  </li>
-                  <li>
-                    <div>
-                      <a style="text-decoration: none;" href="{{URL::to("/salats/vendredi")}}"><img style="width: 18px" src="{{asset("images\mosque-solid.svg")}}">&nbsp;La prière du vendredi</a>
-                    </div>
-                    <div>
-                      <a style="text-decoration: none;" href="{{URL::to("/salat/8")}}"><img style="width: 18px" src="{{asset("images\quran-solid.svg")}}">&nbsp;L'abandon de la prière</a>
-                    </div>
-                    <div>
-                      <a style="text-decoration: none;" href="{{URL::to("/salats/reparation")}}"><img style="width: 18px" src="{{asset("images\quran-solid.svg")}}">&nbsp;Réparation de la prière</a>
-                    </div>
-                </li>
-                </ul>
-            </div>
         </div>
       </div>
     </div>
