@@ -19,7 +19,17 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset("css/admin/sb-admin-2.min.css")}}" rel="stylesheet">
-
+    <style>
+        @media screen and (min-width: 600px) {
+            #image {
+                height: 150px;
+                /* width: 100px; */
+            }
+            #description{
+                text-align: left;
+            }
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -231,141 +241,73 @@
                 </nav>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">Actualités</h1>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <div class="col-8">
-                                        @if(Session::has('success'))
-                                        <div class="alert alert-success" role="alert">
-                                            {{Session::get('success')}}
-                                        </div>
-                                        @elseif(Session::has('fileNotUpload'))
-                                        <div class="alert alert-danger" role="alert">
-                                            {{Session::get('fileNotUpload')}}
-                                        </div>
-                                        @elseif(Session::has('fileType'))
-                                        <div class="alert alert-danger" role="alert">
-                                            {{Session::get('fileType')}}
-                                        </div>
-                                        @elseif(Session::has('fileExist'))
-                                        <div class="alert alert-danger" role="alert">
-                                            {{Session::get('fileExist')}}
-                                        </div>
-                                        @elseif(Session::has('fileSizeToLong'))
-                                        <div class="alert alert-danger" role="alert">
-                                            {{Session::get('fileSizeToLong')}}
-                                        </div>
-                                        @elseif(Session::has('deleted'))
-                                        <div class="alert alert-danger" role="alert">
-                                            {{Session::get('deleted')}}
-                                        </div>
-                                        @endif
-                                    </div>
-                                    <h6 class="m-0 font-weight-bold text-primary">Ajouter un post</h6>
-                                </div>
-                                <div class="card-body">
-                                    <form class="user" action="/addArticle" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="text" name="title" class="form-control form-control-user" id="exampleFirstName"
-                                                    placeholder="Titre" required>
-                                            </div>
-                                            <div class="col-sm-6">                                    
-                                                <input type="File" name="image" class="form-control form-control-user" id="image" required>
-                                                <small>Image de couverture</small>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <textarea style="width: inherit" name="description" id="" cols="30" rows="10" required></textarea>
-                                                <small>Description</small>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label for="exampleSelect1">Type du post à publier</label>
-                                            <select style="width: -webkit-fill-available"  name="type">
-                                              <option>Article</option>
-                                              <option>Evènement</option>
-                                            </select>
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-6">
-                                                <button type="submit" class="btn btn-primary btn-user btn-block">Publier</button>
-                                            </div>
-                                            <div class="col-6">
-                                                <button type="reset" class="btn btn-google btn-user btn-block">Annuler</button>
-                                            </div>
-                                          </div>
-                                    </form>
-                                </div>
+                    <h1 class="h3 mb-4 text-gray-800">Mise à jour des informations</h1>
+                    <div class="card-body">
+                        @if(Session::has('updated'))
+                            <div class="alert alert-success" role="alert">
+                                {{Session::get('updated')}}
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <!-- Circle Buttons -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Posts publiés</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Titre</th>
-                                                        <th style="width: 100%">Description</th>
-                                                        <th>Type de post</th>
-                                                        <th>Couverture</th>
-                                                        <th>Date de publication</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Titre</th>
-                                                        <th style="width: 100%">Description</th>
-                                                        <th>Type de post</th>
-                                                        <th>Couverture</th>
-                                                        <th>Date de publication</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </tfoot>
-                                                <tbody>
-                                                    @foreach($articles as $item)
-                                                    <tr>
-                                                        <td>{{$item->Titre}}</td>
-                                                            @if(strlen($item->Description)<=25)
-                                                            <td>{{$item->Description}}</td>
-                                                            @else
-                                                            <td>
-                                                                <a style="text-decoration: none; color: #727274" href="/articles/{{$item->id_article}}">{{substr($item->Description, 0, 28)."..."}}.</a>
-                                                            </td>
-                                                            @endif                                                     
-                                                        <td>{{$item->Type}}</td>
-                                                        <td>
-                                                            <img style="width: 100%; height: 100%;" src="{{asset($item->Image)}}" alt="Not found">
-                                                        </td>
-                                                        <td>{{date('d-m-Y', strtotime($item->updated_at))}}</td>
-                                                        <td>
-                                                            <a style="width: 0.5rem; height: 1.5rem;" href="{{URL::to('edit/'.$item->id_article)}}" class="btn btn-info btn-circle">
-                                                                <i class="fas fa-info-circle"></i>
-                                                            </a>
-                                                            <a style="width: 0.5rem; height: 1.4rem;"  class="btn btn-danger btn-circle" href="{{URL::to('delete/'.$item->id_article)}}">
-                                                                <i class="fas fa-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
+                        @endif
+                        <form class="user" action="/archives/update/{{$oldArticle->id_article}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-lg-12 mb-4">
+                                    <div class="card shadow mb-4">
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-4">
+                                                <div class="card-header py-3">
+                                                    <h6 class="m-0 font-weight-bold text-primary">Ancien</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                    @if(str_contains($oldArticle->Image,'mp4'))
+                                                    <video width="400" controls style="height:172px; width: 236px;">
+                                                        <source style="height: 250px" src={{asset($oldArticle->Image)}} type="video/mp4" class="figure-img img-fluid rounded" width="240" height="145">
+                                                        <source src="mov_bbb.ogg" type="video/ogg">Your browser does not support HTML video.                   
+                                                    </video><br>
+                                                    <small>Ancienne vidéo</small>
+                                                    @else
+                                                        <label for="">Ancienne image</label>
+                                                        <img id="image" class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 20rem;"
+                                                            src="{{asset($oldArticle->Image)}}" alt="...">
+                                                    @endif
+                                                        
+                                                    </div>
+                                                    <p>
+                                                        <label for="">Description</label>
+                                                        <textarea id="description" style="width: -webkit-fill-available;" name="description" id="" cols="30" rows="10">
+                                                            {{$oldArticle->Description}}
+                                                        </textarea>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-4">
+                                                <div class="card shadow mb-4">
+                                                    <div class="card-header py-3">
+                                                        <h6 class="m-0 font-weight-bold text-primary">Nouveau</h6>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="text-center">
+                                                            <label for="">Nouveau fichier</label>
+                                                            <input type="File" name="newFile" class="form-control form-control-user" id="exampleFirstName">
+                                                            <small style="color: red">Laissez ce champ vide si vous voulez conserver l'ancien fichier</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group col-sm-6"></div>
+                                            <a class="btn btn-secondary" href="{{URL::to('archives')}}">Retour</a>
+                                            <button type="submit" class="btn btn-primary">Enregistrer</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
+            </div>
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -398,6 +340,7 @@
             </div>
         </div>
     </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset("vendor/jquery/jquery.min.js")}}"></script>
     <script src="{{asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>

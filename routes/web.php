@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentairesController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\CategorieFatwasController;
 use App\Http\Controllers\CategoryPrieresController;
 use App\Http\Controllers\ChahadaController;
+use App\Http\Controllers\FatwasController;
 use App\Http\Controllers\HadithController;
 use App\Http\Controllers\InvocationsController;
 use App\Http\Controllers\VolumeController;
@@ -16,6 +18,7 @@ use App\Http\Controllers\PrieresController;
 use App\Http\Controllers\SanteController;
 use App\Http\Controllers\NawawiController;
 use App\Http\Controllers\UserController;
+use App\Models\Categorie_Fatwas;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +41,9 @@ Route::get('/', [ArticlesController::class, 'index']);
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/fatwas/preambule', function () {
-    return view('preambule');
-});
+// Route::get('/fatwas/preambule', function () {
+//     return view('preambule');
+// });
 Route::get('/salats/La-prière', function () {
     return view('salat/priere');
 });
@@ -56,22 +59,18 @@ Route::get('/salats/vendredi', function () {
 Route::get('/salats/reparation', function () {
     return view('salat/reparation');
 });
-Route::get('/fatwas/sahih-bukhari', function () {
-    return view('fatwas/hadith');
-});
+// Route::get('/fatwas/sahih-bukhari', function () {
+//     return view('fatwas/hadith');
+// });
 Route::get('/contact', [CommentairesController::class, 'index']);
-Route::get('/fatwas', function () {
-    return view('fatwas');
-});
+// Route::get('/fatwas', function () {
+//     return view('fatwas');
+// });
+Route::get('/fatwas', [FatwasController::class, 'index']);
 Route::get('/fatwas-apropos', function () {
     return view('fatwas/about');
 });
-Route::get('/fatwas/personnalites', [PersonnalitesController::class, 'index']);
-Route::get('/fatwas/40-hadiths-nawawi', [NawawiController::class, 'index']);
-Route::get('/fatwas/hadj-omra', function(){
-    return view('hadj');
-});
-
+Route::get('/fatwas/{titre}', [FatwasController::class, 'show']);
 Route::get('/articles/{id}', [HomeController::class, 'index']);
 Route::get('/pass_sante', [SanteController::class, 'index']);
 Route::get('/salat', [CategoryPrieresController::class, 'show']);
@@ -110,6 +109,7 @@ Route::get('/admin/sante', [AdminController::class, 'sante']);
 Route::post('/search', [UserController::class, 'search']);
 Route::post('/volume', [AdminController::class, 'addVolume']);
 Route::post('/addCategorie', [CategoryPrieresController::class, 'store']);
+Route::post('/addCategorieFatwas', [CategorieFatwasController::class, 'store']);
 Route::post('/addNewInvocation', [AdminController::class, 'addCategorie']);
 Route::post('/addHadith', [HadithController::class, 'store']);
 Route::get('/coran_hadith', [HadithController::class, 'show']);
@@ -117,4 +117,9 @@ Route::get('/chahada', [ChahadaController::class, 'show']);
 Route::post('/addChahada', [ChahadaController::class, 'store']);
 Route::post('/addPriere', [PrieresController::class, 'store']);
 Route::get('/admin', [AdminController::class, 'admin']);
+Route::get('/delete/message/{id}', [CommentairesController::class, 'destroy']);
+Route::get('/deleteAllMessages', [CommentairesController::class, 'deleteAll']);
 Route::post('/addAdmin', [AdminController::class, 'addAdmin']);
+Route::get('/fatwas/delete/{id}', [CategorieFatwasController::class, 'destroy']);
+Route::post('/addFatwas', [FatwasController::class, 'store']);
+

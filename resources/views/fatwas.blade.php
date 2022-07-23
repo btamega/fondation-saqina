@@ -113,89 +113,110 @@ FATWAS
           </p>
         <div style="text-align: justify; margin-right:0">
             <ul>
-                <li>
+                <li style="height: 142px">
                     <div>
                         <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Le Saint Coran</a></strong>
                     </div>
                     <div>
                         <strong>&nbsp;</strong>
                     </div>
+                    @foreach($categorie_fatwas as $key => $value)
+                    @if($value->Volume=='Le Saint Coran')
                     <div>
-                        <a style="text-decoration: none;" href="{{URL::to("/fatwas/preambule")}}">Préambule</a>
+                        <a style="text-decoration: none;" href="{{URL::to("fatwas/".$value->Titre)}}">{{$value->Titre}}</a>
                     </div>
-                    <div>
-                        <a style="text-decoration: none;" href="{{URL::to('/fatwas/#')}}">Autres sujets en rapport avec le Coran</a>
-                    </div>
-                    
+                    @endif
+                    @endforeach
                 </li>
-                <li>
+                <li style="height: 142px">
                     <div>
                         <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Le Noble Hadith</a></strong>
                     </div>
                     <div>
                         <strong>&nbsp;</strong>
                     </div>
+                    @foreach($categorie_fatwas as $key => $value)
+                    @if($value->Volume=='Le Noble Hadith')
                     <div>
-                        <a style="text-decoration: none;" href="{{URL::to('/fatwas/sahih-bukhari')}}">Sahih Bukhari</a>
+                        <a style="text-decoration: none;" href="{{URL::to("fatwas/".$value->Titre)}}">{{$value->Titre}}</a>
                     </div>
-                    <div>
-                        <a style="text-decoration: none;" href="{{URL::to('/fatwas/40-hadiths-nawawi')}}">40 Hadiths An-Nawawi</a>
-                    </div>
+                    @endif
+                    @endforeach
                 </li>
-                <li style="text-align: left">
+                <li style="text-align: initial; height: 142px">
                     <div>
                         <strong><a style="text-decoration: none; " class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Biographie, Histoire et personnalités</a></strong>
                     </div>
                     <div>
                         <strong>&nbsp;</strong>
                     </div>
+                    @foreach($categorie_fatwas as $key => $value)
+                    @if($value->Volume=='Biographie, Histoire et personnalités')
                     <div>
-                        <a style="text-decoration: none;" href="/fatwas/personnalites">Personnalités</a>
+                        <a style="text-decoration: none;" href="{{URL::to("fatwas/".$value->Titre)}}">{{$value->Titre}}</a>
                     </div>
+                    @endif
+                    @endforeach
                 </li>
-                <li>
+                <li style="height: 142px">
                     <div>
                         <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Daâwa (Appel à l’Islam)</a></strong>
                     </div>
                     <div>
                         <strong>&nbsp;</strong>
                     </div>
+                    @foreach($categorie_fatwas as $key => $value)
+                    @if($value->Volume=='Daâwa (Appel à l’Islam)')
                     <div>
-                        <a style="text-decoration: none;" href="/fatwas/#">Verdict et mérite de la Daâwa</a>
+                        <a style="text-decoration: none;" href="{{URL::to("fatwas/".$value->Titre)}}">{{$value->Titre}}</a>
                     </div>
+                    @endif
+                    @endforeach
                 </li>
-                <li>
+                <li style="height: 142px">
                     <div>
                         <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Fikh des Transactions</a></strong>
                     </div>
                     <div>
                         <strong>&nbsp;</strong>
                     </div>
+                    @foreach($categorie_fatwas as $key => $value)
+                    @if($value->Volume=='Fikh des Transactions')
                     <div>
-                        <a style="text-decoration: none;" href="/fatwas/#">Le Riba</a>
+                        <a style="text-decoration: none;" href="{{URL::to("fatwas/".$value->Titre)}}">{{$value->Titre}}</a>
                     </div>
+                    @endif
+                    @endforeach
                 </li>
-                <li>
+                <li style="height: 142px">
                     <div style="text-align: initial">
                         <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Fikh des 'Ibadates (Actes de culte)</a></strong>
                     </div>
                     <div>
                         <strong>&nbsp;</strong>
                     </div>
+                    @foreach($categorie_fatwas as $key => $value)
+                    @if($value->Volume=='Fikh des Ibadates (Actes de culte)')
                     <div>
-                        <a style="text-decoration: none;" href="/fatwas/hadj-omra">Hadj et Omra</a>
+                        <a style="text-decoration: none;" href="{{URL::to("fatwas/".$value->Titre)}}">{{$value->Titre}}</a>
                     </div>
+                    @endif
+                    @endforeach
                 </li>
-                <li>
+                <li style="height: 142px">
                     <div>
                         <strong><a style="text-decoration: none;" class="invocation" href="#"> <i class="fa fa-folder-open-o"></i> Sujets divers</a></strong>
                     </div>
                     <div>
                         <strong>&nbsp;</strong>
                     </div>
+                    @foreach($categorie_fatwas as $key => $value)
+                    @if($value->Volume=='Sujets divers')
                     <div>
-                        <a style="text-decoration: none;" href="/fatwas/#">Autres</a>
+                        <a style="text-decoration: none;" href="{{URL::to("fatwas/".$value->Titre)}}">{{$value->Titre}}</a>
                     </div>
+                    @endif
+                    @endforeach
                 </li>
             </ul>
            

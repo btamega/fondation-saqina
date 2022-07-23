@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Categorie_Fatwas;
 use App\Models\Hadith;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,6 +108,7 @@ class AdminController extends Controller
         $target_dir = "../public/images/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $path="images/".basename($_FILES["image"]["name"]);
+        $getfilename =  str_replace(' ', '_', $path);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -146,8 +148,8 @@ class AdminController extends Controller
             return redirect()->back()->with('fileNotUpload', 'Votre image n\'a pas été chargée  !');
         // if everything is ok, try to upload file
         } else {
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            $article->Image=$path;
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $getfilename)) {
+            $article->Image=$getfilename;
             $article->save();
             return redirect()->back()->with('success','Votre post a été publié !');
         } else {
@@ -182,7 +184,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $oldArticle = DB::table('articles')->where('id_article', $id)->first();
-        return view('admin/edit')->with('oldArticle',$oldArticle);
+        return view('admin/edit_articles')->with('oldArticle',$oldArticle);
     }
     public function deleteArchive($id)
     {
@@ -320,7 +322,8 @@ class AdminController extends Controller
     }
     public function fatwas()
     {
-        return view('admin/pages/fatwas');
+        $categories_fatwas = Categorie_Fatwas::all();
+        return view('admin/pages/fatwas',compact('categories_fatwas',$categories_fatwas));
     }
     public function sante()
     {

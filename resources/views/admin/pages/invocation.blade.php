@@ -284,10 +284,10 @@
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0"></div>
                                         <div class="col-sm-12">                                    
-                                            <input type="text" name="titre" class="form-control form-control-user" id="image" placeholder="Titre de l'invocation ">
+                                            <input type="text" name="titre" class="form-control form-control-user" id="image" placeholder="Titre de l'invocation " required>
                                         </div> 
                                         <div class="col-sm-12">                                    
-                                            <textarea name="description" class="form-control form-control-user" placeholder="Invocation" id="summernote" cols="30" rows="10"></textarea>
+                                            <textarea name="description" class="form-control form-control-user" placeholder="Invocation" id="summernote" cols="30" rows="10" required></textarea>
                                         </div>
                                     </div>
                                       <div class="row">
@@ -438,7 +438,7 @@
           tabsize: 2,
           height: 300,
           toolbar: [
-            ['style', ['style']],
+            ['style', ['bold', 'italic', 'underline', 'clear']],
             ['fontsize', ['fontsize']],
             ['fontname', ['fontname']],
             ['font', ['bold', 'underline', 'clear']],

@@ -108,11 +108,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                  <form>
+                  <form method="POST" action="/search">
                     <fieldset>
                       <div class="form-group">
                         <label for="exampleSelect1">Catégorie</label>
-                        <select name="categorieToSearch" class="form-select" id="exampleSelect1">
+                        <select name="categorieToSearch" class="form-control" id="exampleSelect1">
                           <option>Hadith</option>
                           <option>Fatwas</option>
                           <option>Invocation</option>
