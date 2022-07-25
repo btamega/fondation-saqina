@@ -37,7 +37,7 @@ p{
     <div class="container">
       <div class="box">
         <div class="center gap">
-          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:initial">FONDATION SAQINA HISTORIQUE</h1>
+          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:center">FONDATION SAQINA HISTORIQUE</h1>
           <p>
             <img src="{{asset('images\Intro.jpeg')}}" class="img" style="width:170px;height:170px;">
             <strong id="strong">INTRODUCTION GENERALE: </strong>l'idée de la fondation SAQINA est née de la volonté des jeunes de la diaspora à venir en aide à des enfants apprenants dans des conditions précaires en zones rurales au Mali. 
@@ -58,11 +58,11 @@ p{
           <P>
             Pour un départ, notre équipe a d'abord jugé nécessaire d'équiper chaque salle de classe (même en paille) des tables-bancs pour avoir une première commodité, puis après nous avons adopté l'achat régulier de nombreuses fournitures scolaires du nombre desquels figurent des stylos, des crayons, des règles, des gommes, des craies et des crayons de couleurs etc...
           </P>
-          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:initial; font-size:30px;">PROGRAMME D'ETABLISSEMENT SCOLAIRE (SOUBASSEMENT)</h1>
+          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:center; font-size:30px;">PROGRAMME D'ETABLISSEMENT SCOLAIRE (SOUBASSEMENT)</h1>
           <p>
             Dans la construction de ce joyau, nous nous sommes d'abord fixés l'objectif de faire des classes simples en tôles, avant de changer la décision par la suite à faire des classes en béton pour plus de résistance mais aussi et surtout pour faire des étages à moindre coût.
           </p> 
-          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:initial; font-size:30px;">FINANCEMENT ET SUIVI DES TRAVAUX DE CONSTRUCTION</h1>
+          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:center; font-size:30px;">FINANCEMENT ET SUIVI DES TRAVAUX DE CONSTRUCTION</h1>
           <p>
             Le projet est entièrement financé par des bénévoles qui ont vite compris l'urgence du moment. A l'issu de notre première réunion, nous avons opté pour les montants de 20 €,30 €,40 € voire 50 € par bénévole. Mais la majorité a opté pour les 50€. Ce montant est cotisé par l'ensemble des bénévoles à l'issu de chaque réunion.
           </p>
@@ -75,7 +75,7 @@ p{
           </p>
 
         </div> <br>
-          <p style="font-size: 20px" class="lead"><a href="https://web.facebook.com/FONDATION-SAQINA-106824000793915/">Rejoignez-nous</a>, nous croyons au pouvoir de l'éducation et à sa capacité à éveiller les consciences.</p>
+          <p style="font-size: 20px" class="lead"><a target="_blank" href="https://web.facebook.com/FONDATION-SAQINA-106824000793915/">Rejoignez-nous</a>, nous croyons au pouvoir de l'éducation et à sa capacité à éveiller les consciences.</p>
           <div style="text-align: center">
             @foreach ($photos as $item)
             <figure class="figure zoom" style="text-align: center">

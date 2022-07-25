@@ -53,9 +53,8 @@ class CategoryPrieresController extends Controller
      */
     public function show(Category_Prieres $category_Prieres)
     {
-       $category_Prieres=DB::table('category__prieres')->get();
+       $category_Prieres=DB::table('category__prieres')->orderByDesc('id_category_priere')->get();
        $nombre = intdiv($category_Prieres->count(),3);
-    //    dd($nombre);
        return view('salat')->with('category_Prieres',$category_Prieres)->with('nombre',$nombre);
     }
 

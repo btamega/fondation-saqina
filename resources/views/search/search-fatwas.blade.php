@@ -19,9 +19,9 @@
             <div class="u-container-style u-layout-cell u-size-30 u-white">
               <div style="background-color: #e5e5e5" class="u-container-layout u-valign-top">
                 @foreach($fatwasResult as $fatwa)
-                    <h6 style="text-align: center" class="u-custom-font u-text u-text-font u-text-palette-3-base u-text-1">{{$fatwa->titre}}</h6>
+                    <h6 style="text-align: center" class="u-custom-font u-text u-text-font u-text-palette-3-base u-text-1">{{$fatwa->Titre}}</h6>
                     <blockquote style="border-left: 5px solid #478ac9" class="u-align-justify u-text u-text-2"> 
-                    <div>{!!$fatwa->description!!}</div>
+                    <div>{!!$fatwa->Description!!}</div>
                     </blockquote>
                 @endforeach
               </div>

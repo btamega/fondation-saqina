@@ -22,17 +22,22 @@ class UserController extends Controller
     {
         $credentials = $request->only('email', 'password');
         $user=DB::table('users')->where('email',$request->email)->first();
-        // dd($user->role);
-        if (Auth::attempt($credentials) && ($user->role=='Admin' || $request->email=='karecherif2000@gmail.com ')) {
-            // Authentication passed...
-            return redirect()->intended('dashboard');
+        if (is_null($user)) {
+            return redirect()->back()->with('userNotExist', 'Il n\'y a aucun compte avec cette adresse mail !');
+        } else {
+            if (Auth::attempt($credentials) && ($user->role=='Admin' || $request->email=='karecherif2000@gmail.com ')) {
+                // Authentication passed...
+                return redirect()->intended('dashboard');
+            }
+            elseif($user->role!='Admin'){
+                return redirect('')->with('success', 'Connexion faite avec succès !');
+            }
+            else{
+                return redirect()->back()->with('error','Les données ne correspondent pas !');
+            }
         }
-        elseif($user->role!='Admin'){
-            return redirect('')->with('success', 'Connexion faite avec succès !');
-        }
-        else{
-            return redirect()->back()->with('error','Les données ne correspondent pas !');
-        }
+        
+        
     }
     public function register()
     {
@@ -67,11 +72,11 @@ class UserController extends Controller
             ->orWhere('description','LIKE','%'.$word.'%')
             ->get();
             if(is_null($hadith)){
-            return view('search/search-hadith')->with('hadithsResult',$hadith)
-            ->with('word',$word);
+                return redirect('error')->with('emptyHadith','Désolé, nous n\'avons aucune donnée de hadiths concernant votre recherche');
             }
             else{
-                return redirect('error')->with('emptyHadith','Désolé, nous n\'avons aucune donnée de hadiths concernant votre recherche');
+                return view('search/search-hadith')->with('hadithsResult',$hadith)
+                ->with('word',$word);
             }
             break;
         case 'Fatwas':
@@ -80,11 +85,11 @@ class UserController extends Controller
             ->orWhere('Description','LIKE','%'.$word.'%')
             ->get();
             if(is_null($fatwa)){
-            return view('search/search-fatwas')->with('fatwasResult',$fatwa)
-            ->with('word',$word);
+                return redirect('error')->with('emptyFatwas','Désolé, nous n\'avons aucun fatwas concernant votre recherche');
             }
             else{
-                return redirect('error')->with('emptyFatwas','Désolé, nous n\'avons aucun fatwas concernant votre recherche');
+                return view('search/search-fatwas')->with('fatwasResult',$fatwa)
+                ->with('word',$word);
             }
             break;
         case 'Invocation':

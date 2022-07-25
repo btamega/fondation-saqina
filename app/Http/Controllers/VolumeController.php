@@ -10,7 +10,7 @@ class VolumeController extends Controller
     public function index()
     {
         //
-        $volumes = DB::table("volumes")->get();
+        $volumes = DB::table("volumes")->orderByDesc('id_volume')->get();
         $category_invocation = DB::table("category__invocations")
         ->join('volumes', 'volumes.id_volume', '=', 'category__invocations.id_volume')
         ->select('category__invocations.*')

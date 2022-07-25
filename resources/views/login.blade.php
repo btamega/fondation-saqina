@@ -52,6 +52,10 @@ img.avatar {
                         <div class="alert alert-success" role="alert">
                             {{Session::get('status')}}
                         </div>
+                        @elseif(Session::has('userNotExist'))
+                        <div class="alert alert-danger" role="alert">
+                            {{Session::get('userNotExist')}}
+                        </div>
                         @endif
                     </div>
                     <div class="col-3"></div>

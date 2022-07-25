@@ -12,13 +12,9 @@ use App\Http\Controllers\FatwasController;
 use App\Http\Controllers\HadithController;
 use App\Http\Controllers\InvocationsController;
 use App\Http\Controllers\VolumeController;
-use App\Http\Controllers\PersonnalitesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrieresController;
-use App\Http\Controllers\SanteController;
-use App\Http\Controllers\NawawiController;
 use App\Http\Controllers\UserController;
-use App\Models\Categorie_Fatwas;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,42 +33,13 @@ Route::get("/salat/{category}", [PrieresController::class, 'index']);
 Route::get('/invocation_evocation', [VolumeController::class, 'index']);
 
 Route::get('/', [ArticlesController::class, 'index']);
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-// Route::get('/fatwas/preambule', function () {
-//     return view('preambule');
-// });
-Route::get('/salats/La-prière', function () {
-    return view('salat/priere');
-});
-Route::get('/salats/Horaires', function () {
-    return view('salat/horaire');
-});
-Route::get('/salats/Adhan', function () {
-    return view('salat/adhan');
-});
-Route::get('/salats/vendredi', function () {
-    return view('salat/vendredi');
-});
-Route::get('/salats/reparation', function () {
-    return view('salat/reparation');
-});
-// Route::get('/fatwas/sahih-bukhari', function () {
-//     return view('fatwas/hadith');
-// });
 Route::get('/contact', [CommentairesController::class, 'index']);
-// Route::get('/fatwas', function () {
-//     return view('fatwas');
-// });
 Route::get('/fatwas', [FatwasController::class, 'index']);
 Route::get('/fatwas-apropos', function () {
     return view('fatwas/about');
 });
 Route::get('/fatwas/{titre}', [FatwasController::class, 'show']);
 Route::get('/articles/{id}', [HomeController::class, 'index']);
-Route::get('/pass_sante', [SanteController::class, 'index']);
 Route::get('/salat', [CategoryPrieresController::class, 'show']);
 Route::get('/showAllMessages', function () {
     return view('admin/showAll');

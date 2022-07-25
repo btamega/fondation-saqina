@@ -11,7 +11,7 @@ SALAT
     <div class="container">
       <div class="box">
         <div class="center gap">
-          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:initial">CHAPITRE SUR LA PRIERE</h1> <br>
+          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:center">CHAPITRE SUR LA PRIERE</h1> <br>
           <p>La prière est l'un des actes d'adoration le plus important en islam. <br> La prière consiste à montrer à Allah notre soumission, notre dévotion et notre amour que l'on a pour Lui. <br>
             Le musulman doit prier 5 fois par jours, précédée d'une purification rituelle.</p> <br>
             <p>D'après Jabir (qu'Allah l'agrée), le Prophète (que la prière d'Allah et Son salut soient sur lui) a dit: « Certes entre un homme et l'association et la mécréance il y a l'abandon de la prière ». <br>

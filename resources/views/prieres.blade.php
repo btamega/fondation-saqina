@@ -47,7 +47,7 @@ Fondation SAQINA
         
         <strong><p style="color:rgb(51, 172, 155); font-size: 18px; font-style:italic; text-align:justify;">*{{$item->Transcription_Phonetique}}*</p></strong> <br>
         @endif
-        <p dir="rtl" style="color: #171792; font-size:26pt"><?php
+        <p dir="rtl" style="color: #171792; font-size:15pt"><?php
           echo str_replace("\n","</br>", $item->Reference_Coran);
           ?></p></p> <br>
           @if($item->Reference_Hadith==null)

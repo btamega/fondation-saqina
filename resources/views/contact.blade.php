@@ -62,7 +62,6 @@ CONTACT
                   <strong>Ecole annexe</strong><br>
                   Oussoubidiagna, sortie du village<br>
                   Kayes, Mali<br>
-                  <abbr title="Phone">P:</abbr> (223) 456-7890
                 </address>
               </div>
             </div>
