@@ -109,6 +109,7 @@
                 </div>
                 <div class="modal-body">
                   <form method="POST" action="/search">
+                    @csrf
                     <fieldset>
                       <div class="form-group">
                         <label for="exampleSelect1">Catégorie</label>

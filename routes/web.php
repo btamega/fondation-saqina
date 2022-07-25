@@ -122,4 +122,7 @@ Route::get('/deleteAllMessages', [CommentairesController::class, 'deleteAll']);
 Route::post('/addAdmin', [AdminController::class, 'addAdmin']);
 Route::get('/fatwas/delete/{id}', [CategorieFatwasController::class, 'destroy']);
 Route::post('/addFatwas', [FatwasController::class, 'store']);
+Route::get('/error', function(){
+    return view('error');
+});
 

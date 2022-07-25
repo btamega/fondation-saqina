@@ -58,6 +58,87 @@ class UserController extends Controller
     }
     public function search(Request $request)
     {
-       
+       $categorie=$request->categorieToSearch;
+       $word=$request->textToSearch;
+       switch ($categorie) {
+        case 'Hadith':
+            $hadith=DB::table('hadiths')
+            ->where('titre','LIKE','%'.$word."%")
+            ->orWhere('description','LIKE','%'.$word.'%')
+            ->get();
+            if(is_null($hadith)){
+            return view('search/search-hadith')->with('hadithsResult',$hadith)
+            ->with('word',$word);
+            }
+            else{
+                return redirect('error')->with('emptyHadith','Désolé, nous n\'avons aucune donnée de hadiths concernant votre recherche');
+            }
+            break;
+        case 'Fatwas':
+            $fatwa=DB::table('fatwas')
+            ->where('Titre','LIKE','%'.$word."%")
+            ->orWhere('Description','LIKE','%'.$word.'%')
+            ->get();
+            if(is_null($fatwa)){
+            return view('search/search-fatwas')->with('fatwasResult',$fatwa)
+            ->with('word',$word);
+            }
+            else{
+                return redirect('error')->with('emptyFatwas','Désolé, nous n\'avons aucun fatwas concernant votre recherche');
+            }
+            break;
+        case 'Invocation':
+            $invocation=DB::table('invocations')
+            ->where('Category','LIKE','%'.$word."%")
+            ->orWhere('Titre','LIKE','%'.$word.'%')
+            ->orWhere('Description','LIKE','%'.$word.'%')
+            ->get();
+            if(is_null($invocation)){
+            return view('search/search-invocation')->with('invocationsResult',$invocation)
+            ->with('word',$word);
+            }
+            else{
+                return redirect('error')->with('emptyInvocation','Désolé, nous n\'avons aucune invocation concernant votre recherche');
+            }
+            break;
+        case 'Autre':
+            $chahadas=DB::table('chahadas')
+            ->where('titre','LIKE','%'.$word."%")
+            ->orWhere('description','LIKE','%'.$word.'%')
+            ->get();
+            $article=DB::table('articles')
+            ->where('Titre','LIKE','%'.$word."%")
+            ->orWhere('Description','LIKE','%'.$word.'%')
+            ->orWhere('Image','LIKE','%'.$word.'%')
+            ->get();
+            if (is_null($chahadas)) {
+                return view('search/search-chahada')
+                ->with('chahadas',$chahadas)
+                ->with('word',$word);
+            }elseif(is_null($article)){
+                return view('search/search-articles')
+                ->with('word',$word)
+                ->with('articlesResults',$article);
+            }
+            else{
+                return redirect('error')->with('emptyChahada','Désolé, nous n\'avons aucune donnée concernant votre recherche');
+            }
+            
+            break;
+            
+        default:
+            $hadith=DB::table('hadiths')
+            ->where('titre','LIKE','%'.$word."%")
+            ->orWhere('description','LIKE','%'.$word.'%')
+            ->get();
+            if($hadith!=null){
+            return view('search/search-hadith')->with('hadithsResult',$hadith)
+            ->with('word',$word);
+            }
+            else{
+                return redirect('error')->with('emptyHadith','Désolé, nous n\'avons aucune donnée de hadiths concernant votre recherche');
+            }
+            break;
+       }
     }
 }
