@@ -40,7 +40,6 @@ FATWAS
                   <h3 style="font-family: 'Bodoni MT', 'Didot', 'Didot LT STD'; color:rgb(226, 97, 97)">
                     Définition  de la Fatwa (disposition juridique circonstanciée) <br>
                     Au sens étymologique :
-                    
                 </h3>
                 <p>
                     C’est une réponse à une question. Le sens de linguistique tourne autour de : explication des choses et l’élucidation de la vérité des choses de manière à dissiper toute ambiguïté.

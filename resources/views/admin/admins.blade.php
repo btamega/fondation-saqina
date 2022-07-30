@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Admin - Dashboard</title>
     <link rel="shortcut icon" href="{{ asset("images/favicon.ico")}}">
     <!-- Custom fonts for this template-->
@@ -26,7 +26,7 @@
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{URL::to('')}}">
-                <div class="sidebar-brand-text mx-6">FONDATION SAQINA</div>
+                <div class="sidebar-brand-text mx-6">INSTITUT ISLAMIQUE</div>
             </a>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
@@ -78,11 +78,7 @@
                     <i class="fas fa-star-and-crescent"></i>
                     <span>FATWAS</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{URL::to('/admin/sante')}}">
-                    <i class="fas fa-medkit"></i>
-                    <span>PASS SANTE</span></a>
-            </li>
+            
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item">
                 <a class="nav-link" href="{{URL::to('/admin')}}">
@@ -394,7 +390,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span class="sp-copyright">© 2021. All Rights Reserved. Fondation SAQINA</span>
+                        <span class="sp-copyright">© 2021. All Rights Reserved. INSTITUT ISLAMIQUE</span>
                     </div>
                 </div>
             </footer>

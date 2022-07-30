@@ -11,8 +11,8 @@ class ImagesController extends Controller
     //
     public function index()
     {
-        $image =DB::table("images")->where("Type", "=", 'Image')->orderBy('URL_Image', 'asc')->get();
-        $video =DB::table("images")->where("Type", "=", 'Video')->get();
+        $image =DB::table("images")->where("Type", "=", 'Image')->orderByDesc('id')->get();
+        $video =DB::table("images")->where("Type", "=", 'Video')->orderByDesc('id')->get();
         return view('fondation')->with("photos", $image)->with("videos", $video);
         
     }

@@ -15,8 +15,8 @@ class PrieresController extends Controller
     public function index($id)
     {
         //
-        $prieres=DB::table('prieres')->where('id_category_priere','=',$id)->get();
-        $category_priere=DB::table('category__prieres')->where('id_category_priere','=',$id)->get();
+        $prieres=DB::table('prieres')->where('id_category_priere','=',$id)->orderByDesc('id_priere')->get();
+        $category_priere=DB::table('category__prieres')->where('id_category_priere','=',$id)->first();
         return view('prieres')->with('prieres',$prieres)->with('category_prieres',$category_priere);
     }
 

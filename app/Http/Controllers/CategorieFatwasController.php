@@ -85,7 +85,13 @@ class CategorieFatwasController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('categorie__fatwas')->where('id', $id)->delete();
-        return redirect()->back()->with('fatwasDeleted','Catégorie de fatwas supprimée avec succès');
+        if (DB::table('fatwas')->where('id_categorie_fatwas',$id)->exists()) {
+            DB::table('fatwas')->where('id_categorie_fatwas',$id)->delete();
+            DB::table('categorie__fatwas')->where('id', $id)->delete();
+            return redirect()->back()->with('fatwasDeleted','Catégorie de fatwas supprimée avec succès');
+        } else {
+            DB::table('categorie__fatwas')->where('id', $id)->delete();
+            return redirect()->back()->with('fatwasDeleted','Catégorie de fatwas supprimée avec succès');
+        }
     }
 }

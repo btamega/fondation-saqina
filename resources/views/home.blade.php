@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-Fondation SAQINA
+INSTITUT ISLAMIQUE
 @endsection
 @section('stylesheet')
 <link rel="stylesheet" href="{{asset('css/Articles.css')}}">
@@ -172,7 +172,7 @@ Fondation SAQINA
       <div class="item active">
         <div class="container">
           <div class="carousel-content">
-            <h1>FONDATION SAQINA</h1>
+            <h1>INSTITUT ISLAMIQUE</h1>
             <p class="lead">Tout s'épuise un jour,<br>sauf le bien que tu fais<br>et l'amour que tu donnes</p>
             <h1>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</h1>
           </div>
@@ -197,7 +197,7 @@ Fondation SAQINA
   <section class="u-align-center u-clearfix u-grey-5 u-section-2" id="sec-07a0">
     <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xl u-container-style u-expanded-width u-group u-palette-5-dark-3 u-group-1">
       <div class="u-container-layout u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-1">
-        <h1 class="u-align-center-xs u-custom-font u-font-playfair-display u-text u-text-1">SAQINA News</h1>
+        <h1 class="u-align-center-xs u-custom-font u-font-playfair-display u-text u-text-1">Actualités</h1>
       </div>
     </div>
   </section> 
@@ -247,7 +247,7 @@ Fondation SAQINA
     <section id="services" class="service-item">
     <div class="container">
       <div class="center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
-        <h2>SAQINA Events</h2>
+        <h2>Events</h2>
         <p class="lead">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم<br> Retrouvez nos événements à venir</p>
       </div>
       <div style="margin-right: 15px" class="row">

@@ -47,7 +47,7 @@
         <div class="row">
             <div id="sp-footer1" class="col-sm-12 col-md-12">
                 <div class="sp-column ">
-                    <span class="sp-copyright">© 2021. All Rights Reserved. Fondation SAQINA</span>
+                    <span class="sp-copyright">© 2021. All Rights Reserved. INSTITUT ISLAMIQUE</span>
                 </div>
             </div>
         </div>

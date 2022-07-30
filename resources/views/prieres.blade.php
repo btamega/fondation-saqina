@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-Fondation SAQINA
+{{$category_prieres->Titre}}
 @endsection
 @section('stylesheet')
 <style>
@@ -28,9 +28,7 @@ Fondation SAQINA
     <div class="container">
       <div class="box">
         <div class="center gap">
-        @foreach($category_prieres as $category)
-          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:center">{{$category->Titre}}</h1>
-        @endforeach 
+          <h1 style="font-family:'Bodoni MT', 'Didot', Didot LT STD; text-align:center">{{$category_prieres->Titre}}</h1>
       </div>
         @foreach($prieres as $item)
         <div style="text-align: center" class="titre">

@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Fondation SAQINA</title>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<title>INSTITUT ISLAMIQUE</title>
 <link href="{{ asset("css/uncss.css")}}" rel="stylesheet">
 <link rel="shortcut icon" href="{{ asset("images/favicon.ico")}}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -92,11 +93,30 @@
         <a class="{{ (request()->is('invocation_evocation*')) ? 'active' : '' }}" href="{{URL::to('/invocation_evocation')}}">INVOCATIONS & EVOCATIONS</a>
         <a class="{{ (request()->is('fatwas*')) ? 'active' : '' }}" href="{{URL::to('/fatwas')}}">FATWAS</a>
         <a class="{{ (request()->is('contact*')) ? 'active' : '' }}" href="{{URL::to('/contact')}}">CONTACT</a>
-        <a class="{{ (request()->is('login*')) ? 'active' : '' }}" href="{{URL::to('/login')}}">LOGIN</a>
-        <a class="{{ (request()->is('pass_sante*')) ? 'active' : '' }}" href="#" data-toggle="modal" data-target="#search">RECHERCHER</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
+        @guest
+            <a class="{{ (request()->is('login*')) ? 'active' : '' }}" href="{{URL::to('login')}}">LOGIN</a>
+        @else
+        <a data-toggle="modal" data-target="#logout" href="#">{{ Auth::user()->name }}</a>
+        <div style="background: #f2f2f261" class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Déconnexion</h5>
+                      <button style="margin-top:-20px" class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    Êtes-vous sûr de vouloir vous déconnecter ?
+                  </div>
+                  <div class="modal-footer">
+                    <button onclick="location.href='/logout'" type="button" class="btn btn-success">Confirmer</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+        @endguest
+        <a  href="#" data-toggle="modal" data-target="#search">RECHERCHER</a>
       </div>
       <div style="background: #f2f2f261" class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -117,6 +137,7 @@
                           <option>Hadith</option>
                           <option>Fatwas</option>
                           <option>Invocation</option>
+                          <option>Chahada</option>
                           <option>Autre</option>
                         </select>
                       </div>

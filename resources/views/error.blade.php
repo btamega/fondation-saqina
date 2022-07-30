@@ -55,6 +55,11 @@ Not found
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                 <strong>{{Session::get('emptyInvocation')}}</strong>
                             </div>
+                        @elseif(Session::has('emptyArticle'))
+                        <div class="alert alert-dismissible alert-info">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <strong>{{Session::get('emptyArticle')}}</strong>
+                        </div>
                         @elseif(Session::has('emptyHadith'))
                             <div class="alert alert-dismissible alert-info">
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>

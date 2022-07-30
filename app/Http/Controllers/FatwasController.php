@@ -61,8 +61,11 @@ class FatwasController extends Controller
         ->select('Titre','id')
         ->first();
         $fatwas=DB::table('fatwas')->where('id_categorie_fatwas','=',$categorie_fatwas->id)->first();
-        // dd($categorie_fatwas);
+        if (is_null($fatwas)) {
+           return redirect()->back();
+        }else{    
         return view('fatwas_display', compact('fatwas',$fatwas));
+        }
     }
 
     /**

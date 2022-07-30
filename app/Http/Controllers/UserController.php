@@ -98,7 +98,7 @@ class UserController extends Controller
             ->orWhere('Titre','LIKE','%'.$word.'%')
             ->orWhere('Description','LIKE','%'.$word.'%')
             ->get();
-            if(is_null($invocation)){
+            if(!is_null($invocation)){
             return view('search/search-invocation')->with('invocationsResult',$invocation)
             ->with('word',$word);
             }
@@ -106,29 +106,32 @@ class UserController extends Controller
                 return redirect('error')->with('emptyInvocation','Désolé, nous n\'avons aucune invocation concernant votre recherche');
             }
             break;
+            case 'Chahada':
+                $chahadas=DB::table('chahadas')
+                ->where('titre','LIKE','%'.$word."%")
+                ->orWhere('description','LIKE','%'.$word.'%')
+                ->get();
+                if(!is_null($chahadas)){
+                return view('search/search-chahada')->with('chahadas',$chahadas)
+                ->with('word',$word);
+                }
+                else{
+                    return redirect('error')->with('emptyChahada','Désolé, nous n\'avons aucune donnée de chahada concernant votre recherche');
+                }
+                break;
         case 'Autre':
-            $chahadas=DB::table('chahadas')
-            ->where('titre','LIKE','%'.$word."%")
-            ->orWhere('description','LIKE','%'.$word.'%')
-            ->get();
             $article=DB::table('articles')
             ->where('Titre','LIKE','%'.$word."%")
             ->orWhere('Description','LIKE','%'.$word.'%')
             ->orWhere('Image','LIKE','%'.$word.'%')
             ->get();
-            if (is_null($chahadas)) {
-                return view('search/search-chahada')
-                ->with('chahadas',$chahadas)
-                ->with('word',$word);
-            }elseif(is_null($article)){
+            if (is_null($article)) {
+                return redirect('error')->with('emptyArticle','Désolé, nous n\'avons aucune donnée concernant votre recherche');
+            }else{
                 return view('search/search-articles')
                 ->with('word',$word)
                 ->with('articlesResults',$article);
             }
-            else{
-                return redirect('error')->with('emptyChahada','Désolé, nous n\'avons aucune donnée concernant votre recherche');
-            }
-            
             break;
             
         default:

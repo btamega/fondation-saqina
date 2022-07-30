@@ -111,7 +111,7 @@ FATWAS
             
             La fatwa est « le fait d’informer du statut juridique d’une manière non coercitive » <br> Il existe deux sortes de fatwa :<a id="a"  href="/fatwas-apropos">Voir plus</a> <p></p>
           </p>
-        <div style="text-align: justify; margin-right:0">
+        <div style="text-align: left; margin-right:0">
             <ul>
                 <li style="height: 142px">
                     <div>
